@@ -1,0 +1,434 @@
+/*BASIC BUTTONS*/
+
+button{
+    cursor: pointer;
+    float: left;
+    border: none;
+    width: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 40px;
+    background: #0597F2;
+    box-shadow: 0px 2px 14px -5px #0597F2;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #ffffff;
+    font-family: RobotoMedium;
+    margin: 10px;
+    transition: ease-out;
+    transition-duration: .3s;
+  
+}
+
+button:hover{
+    background: #54b3ee;
+
+}
+.bttn_nav_left{
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.bttn_nav_left img{
+    padding-right: 10px;
+}
+
+.bttn_nav_right{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.bttn_nav_right img{
+    padding-left: 10px;
+}
+
+
+
+button img{
+    vertical-align: middle;   
+     
+}
+
+.accept_bttn{
+
+    background: #1ACC6C;
+    box-shadow: 0px 2px 14px -5px #1ACC6C;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: ease-out;
+    transition-duration: .3s;
+}
+
+.accept_bttn:hover{
+    background: #4fcf8b;  
+}
+
+.warning_bttn{
+    background: #F23838;
+    box-shadow: 0px 2px 14px -5px #F23838;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: ease-out;
+    transition-duration: .3s;
+}
+
+.warning_bttn:hover{
+    background: #f36868; 
+}
+
+.neutral_bttn{
+
+    background: #744FA3;
+    box-shadow: 0px 2px 14px -5px #DADADA;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: ease-out;
+    transition-duration: .3s;
+
+}
+
+.neutral_bttn:hover{
+
+    background: #836aa5;
+}
+
+/*DISABLED BUTTON*/
+
+button:disabled,
+button[disabled]{
+    cursor: pointer;
+    float: left;
+    border: none;
+    width: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 40px;
+    background: #ACD3EB;
+    box-shadow: 0px 0px 0px 0px ;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #ffffff;
+    font-family: RobotoMedium;
+}
+
+.accept_bttn:disabled{
+    background: #BDD9CA;
+}
+
+.warning_bttn:disabled{
+    background: #ECB2B2;
+}
+
+.neutral_bttn:disabled{
+
+    background: rgba(116, 79, 163, 0.43);
+}
+
+/*WITHE BUTTONS*/
+
+.wBasic_bttn{
+
+    background: #FFFFFF;
+    border: 1px solid #0597F2;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 14px -5px #C7C7C7;
+    color:  #0597F2;
+}
+
+.wBasic_bttn:hover{
+
+    background: #0597F2;
+    color: #FFFFFF;
+}
+
+.wAccept_bttn{ 
+    background: #FFFFFF;
+    border: 1px solid #1ACC6C;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 14px -5px #C7C7C7;
+    color: #1ACC6C;
+}
+
+.wAccept_bttn:hover{
+
+    background: #1ACC6C;
+    color: #FFFFFF;
+}
+
+
+.wWarning_bttn{
+    background: #FFFFFF;
+    border: 1px solid #F23838;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 14px -5px #C7C7C7;
+    color:  #F23838;
+}
+
+.wWarning_bttn:hover{
+
+    background: #F23838;
+    color: #FFFFFF;
+}
+
+.wNeutral_bttn{
+    background: #FFFFFF;
+    border: 1px solid #744FA3;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 14px -5px #C7C7C7;
+    color: #744FA3;
+}
+
+.wNeutral_bttn:hover{
+
+    background: #744FA3;
+    color: #FFFFFF;
+}
+
+
+
+
+/*INPUTS */
+
+input{
+  
+width: 260px;
+height: 40px;
+padding-left: 15px;
+background: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.22);
+box-sizing: border-box;
+box-shadow: 0px 0px 19px -10px rgba(0, 0, 0, 0.45);
+border-radius: 4px;
+font-family: RobotoRegular;
+font-size: 16px;
+
+
+}
+
+input:disabled{  
+    
+    background: #DEDEDE; 
+    }
+
+input:focus{
+    border: 1px solid rgba(5, 151, 242, 0.73);
+    outline:none;
+}
+.inp_wrong{
+    border: 1px solid rgba(242, 56, 56, 0.75);
+    color: #F23838;
+    
+}
+.inp_wrong:focus{
+    border: 1px solid rgba(242, 56, 56, 0.75);
+}
+
+/*COMBOBOX SELECT*/
+
+select{
+
+width: 260px;
+height: 40px;
+background: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.22);
+box-sizing: border-box;
+box-shadow: 0px 0px 19px -10px rgba(0, 0, 0, 0.45);
+border-radius: 4px;
+font-size: 16px;
+font-family: RobotoRegular;
+padding-left: 15px;
+outline:none;
+cursor: pointer;
+
+
+background-image: url(Icons/downArr.png);
+background-repeat: no-repeat;
+background-position: right; 
+-webkit-appearance: none;
+-moz-appearance: none;
+-o-appearance: none;
+appearance: none
+}
+
+select:disabled{
+
+    background: #DEDEDE;
+
+    background-image: url(Icons/downArr.png);
+background-repeat: no-repeat;
+background-position: right; 
+-webkit-appearance: none;
+-moz-appearance: none;
+-o-appearance: none;
+appearance: none
+}
+
+select:focus{
+    border: 1px solid rgba(5, 151, 242, 0.73);
+    background-image: url(Icons/downArrBlue.png);
+background-repeat: no-repeat;
+background-position: right; 
+   
+}
+
+/*CHECKBOX*/
+
+input[type="checkbox"]{
+   
+    width: 25px;
+    height:25px;    
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 19px -10px rgba(0, 0, 0, 0.45);
+    border-radius: 4px;
+    font-family: RobotoRegular;
+    font-size: 16px;
+    vertical-align: middle;
+    position: relative;
+
+
+}
+
+.chk_label{
+    font-size: 16px;
+    display: block;    
+    font-family: RobotoRegular;    
+}
+
+.palete1{
+    float: left;
+    background-color: #0597F2;
+    width:110px;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: RobotoMedium;
+    font-size: 18px;
+    text-align: center;   
+    margin: 5px; 
+}
+.palete2{
+    float: left;
+    background-color: #2b2b2b;
+    width:110px;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: RobotoMedium;
+    font-size: 18px;
+    text-align: center;   
+    margin: 5px; 
+}
+
+.palete3{
+    float: left;
+    background-color:#744FA3;
+    width:110px;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: RobotoMedium;
+    font-size: 18px;
+    text-align: center;   
+    margin: 5px; 
+}
+
+
+/*RADIO BUTTON*/
+
+input[type="radio"]{
+  
+    width: 25px;
+    height:25px;    
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 19px -10px rgba(0, 0, 0, 0.45);
+    border-radius: 4px;
+    font-family: RobotoRegular;
+    font-size: 16px;
+    vertical-align: middle;
+    position: relative;
+}
+
+
+
+.rad_label{
+    font-size: 16px;
+    display: block;  
+    font-family: RobotoRegular;    
+}
+
+
+.container{
+   
+    margin: 30px;
+
+}
+
+.container_2{
+  
+    margin: 30px;
+}
+
+.container_3{
+   
+    margin: 30px;
+}
+
+.container_4{
+   
+    margin: 30px;
+    margin-left: 40px;
+}
+
+.container_5{
+  
+    margin: 30px;
+    margin-left: 40px;
+}
+
+.container_6{
+ 
+    margin: 30px;
+    margin-left: 40px;
+}
+h2{
+font-family: RobotoMedium;
+color: #0597F2;
+
+}
+h3{
+    font-family: RobotoRegular;
+    float: left;
+    width: 120px;
+
+}
+
+@font-face {
+
+    font-family: RobotoMedium;
+    src: url(Font/Roboto/Roboto-Medium.ttf)
+}
+
+@font-face {
+
+    font-family: RobotoRegular;
+    src: url(Font/Roboto/Roboto-Regular.ttf)
+}
+
+@font-face {
+
+    font-family: RobotoBlack;
+    src: url(Font/Roboto/Roboto-Black.ttf)
+}
+
+@font-face {
+
+    font-family: RobotoBold;
+    src: url(Font/Roboto/Roboto-Bold.ttf)
+}
