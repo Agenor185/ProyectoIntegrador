@@ -1,14 +1,11 @@
 /* FUNCIONES PAGINA PRINCIPAL */
 function cargarPagina(id) {
-    if (id === "alumno") {
-   alert("entro");
+    if (id === "alumno") {  
         $(".div_container").load('Registros/RegistroUsuario.jsp .div_formUser');
 
     }
-    if (id === "docente") {
-        alert("entro");
+    if (id === "docente") {    
         $(".div_container").load('Registros/RegistroUsuario.jsp .div_formUser2');
-
     }
    
 }
