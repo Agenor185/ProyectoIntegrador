@@ -1,13 +1,13 @@
 /* FUNCIONES PAGINA PRINCIPAL */
 function cargarPagina(id) {
-    if (id === "alumno") {  
+    if (id === "alumno") {
         $(".div_container").load('Registros/RegistroUsuario.jsp .div_formUser');
 
     }
-    if (id === "docente") {    
+    if (id === "docente") {
         $(".div_container").load('Registros/RegistroUsuario.jsp .div_formUser2');
     }
-   
+
 }
 var estado = false;
 function verMenuRegistro(id) {
@@ -23,7 +23,25 @@ function verMenuRegistro(id) {
     }
 }
 
-function cerrarMenu() {
+/* FUNCIONES REGISTRO USUARIO*/
 
+/* AJAX ENVIO REGISTRO */
+
+
+function nuevaUsuario() {
+    alert("Envio 1 ");
+    alert($("#form_persona").serialize());
+        $.ajax({
+            type: 'post',
+            url: $("#form_persona").attr('action'),
+            data: $("#form_persona").serialize(),
+            success: function (data) {
+               alert("Envio");
+           
+            }
+        });
+
+
+  
 }
 

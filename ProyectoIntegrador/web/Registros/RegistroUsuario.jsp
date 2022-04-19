@@ -4,6 +4,7 @@
             Formulario de Registro Estudiante           
         </div>
         <br>
+        <form action="ControladorPrincipal" method="post" id="form_persona">
         <table>
             <tr>
                 <td>Primer Nombre</td>              
@@ -41,20 +42,23 @@
             </tr>
             <tr>
                 <td><select id="grado" name="GRADO">
-                        <option value="1" disabled selected>Seleccione...</option>
-                        <option value="9">Noveno</option>
-                        <option value="10">Decimo</option>
-                        <option value="11">Once</option>
+                        <option value="0" disabled selected>Seleccione...</option>
+                        <option value="1">Noveno</option>
+                        <option value="2">Decimo</option>
+                        <option value="3">Once</option>
                     </select>
                 </td>
                 
             </tr>
               <tr>
-                   <td><button type="button" class="accept_bttn">Enviar</button> </td>
+                  <td><button type="button" onclick="nuevaUsuario()" class="accept_bttn">Enviar</button> </td>
                 <td>
                 </td>
                
         </table>
+            <input type="text" name="modulo" value="nuevoUsuario" hidden>
+            <input type="text" name="tipo" value="estudiante" hidden>
+        </form>
     </div>
 
 </div>
@@ -70,6 +74,7 @@
             Formulario de Registro Docente          
         </div>
         <br>
+         <form action="ControladorPrincipal" method="post" id="form_persona">
         <table>
             <tr>
                 <td>Primer Nombre</td>              
@@ -117,11 +122,15 @@
             </tr>
         
               <tr>
-                   <td><button type="button" class="accept_bttn">Enviar</button> </td>
+                   <td><button type="button" onclick="nuevaUsuario()" class="accept_bttn">Enviar</button> </td>
                 <td>
                 </td>
+                
+                 <input type="text" name="modulo" value="nuevoUsuario" hidden>
+            <input type="text" name="tipo" value="docente" hidden>
                
         </table>
+         </form>
     </div>
     
 

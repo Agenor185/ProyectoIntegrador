@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="Styles/BasicStyles.css"/>
         <script type="text/javascript" src="Js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript" src="Js/Controlador.js"></script>
+        <script type="text/javascript" src="Js/jqueryForms.js"></script>
         <title>JSP Page</title>
     </head>
     <body>

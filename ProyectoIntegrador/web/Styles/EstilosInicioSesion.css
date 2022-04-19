@@ -4,6 +4,7 @@ body {
     background: #0597F2;
     font-family: RobotoMedium;
     height: 100vh;
+    font-family: ReobotoRegular;
 }
 .login-box{
     width: 320px;
