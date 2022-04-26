@@ -22,7 +22,7 @@
             <div class="div_menu">
                 <ul class="ul_menu">
                     <li>Inicio</li>
-                    <li>Modulos</li>
+                    <li id="li_mod" onclick="cargarPagModulo()">Modulos</li>
                     <li>Perfil</li>
                     <li id="li_reg" onclick="verMenuRegistro(this.id)">Registar Usuarios</li>
                     <ul class="ul_regMenu" hidden>

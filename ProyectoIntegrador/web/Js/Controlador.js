@@ -23,6 +23,13 @@ function verMenuRegistro(id) {
     }
 }
 
+function cargarPagModulo(){
+    
+     $(".div_container").load('Modulos/modulosPrincipal.jsp');
+}
+
+
+
 /* FUNCIONES REGISTRO USUARIO*/
 
 /* AJAX ENVIO REGISTRO */

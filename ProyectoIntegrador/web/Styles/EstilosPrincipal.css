@@ -115,3 +115,49 @@ li.selected{
     padding: 10px;
     padding-right: 60px;
 }
+
+/* ESTILOS MODULOS PRINCIPAL */
+
+.div_modulos{  
+ 
+    background-color: #ffffff;
+    position: absolute;
+    font-family: RobotoRegular;
+    width: 70%;
+    height: calc(100% - 65px); 
+    padding: 60px;
+    padding-bottom: 0.5px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow:auto;
+    overflow-x: hidden;
+    
+    
+}
+
+.div_modMat{
+    float: left;
+    width: 210PX;
+    height: 210px;
+    border-radius: 8px;
+    background-color: #54b3ee;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    margin-left: 60px;
+    margin-bottom: 50px;
+}
+
+.mod_mate{
+    background-color: #d62638;
+}
+
+.mod_esp{
+    background-color: #1ACC6C;
+}
+
+.mod_ing{
+    background-color: #744FA3;
+}
