@@ -24,10 +24,12 @@ function verMenuRegistro(id) {
 }
 
 function cargarPagModulo() {
-
     $(".div_container").load('Modulos/modulosPrincipal.jsp');
 }
 
+function cargarPagPerfil() {
+    $(".div_container").load('Perfiles/PerfilUsuario.jsp');
+}
 
 
 /* FUNCIONES REGISTRO USUARIO*/
@@ -36,21 +38,20 @@ function cargarPagModulo() {
 
 
 function nuevaUsuario() {
-    alert("Envio 1 ");
-    alert($("#form_persona").serialize());
+
     $.ajax({
         type: 'post',
         url: $("#form_persona").attr('action'),
         data: $("#form_persona").serialize(),
         success: function (data) {
-            alert("Envio");
+            alertSucsses("¡Registro Exitoso!");
+            $("#form_persona")[0].reset();
 
         }
     });
+
 }
-
-/* AJAX INICIO SESION */
-
+/*INICIO SESION*/
 function inicioSesion(PERS_USERNAME, PERS_PASSWORD, modulo) {
 
 
@@ -63,8 +64,56 @@ function inicioSesion(PERS_USERNAME, PERS_PASSWORD, modulo) {
             window.location.replace("Principal.jsp");
         } else {
 
-            alert("Usuario o Contraseña Incorrecta")
+            alert("Usuario o Contraseña Incorrecta");
         }
 
     });
 }
+
+/*MODULOS TEMATICOS*/
+function moduloInfo(id) {
+
+    $(".modal_fondo").fadeIn("fast");
+    $(".div_modal").fadeIn("fast");
+    if (id === "math") {
+        $(".modal_titulo").text("Prueba de Matematicas");
+        $(".modal_mmath").fadeIn("slow");
+    }
+
+    if (id === "esp") {
+
+        $(".modal_titulo").text("Prueba de Compresion Lectora");
+        $(".modal_lect").fadeIn("slow");
+    }
+    if (id === "ing") {
+        $(".modal_titulo").text("Prueba de Ingles");
+         $(".modal_ingl").fadeIn("slow");
+    }
+
+    if (id === "syc") {
+        $(".modal_titulo").text("Prueba de Ciencias Sociales y Ciudadania");
+         $(".modal_ciud").fadeIn("slow");
+    }
+
+    if (id === "cna") {
+        $(".modal_titulo").text("Prueba de Ciencias Naturales");
+         $(".modal_cna").fadeIn("slow");
+    }
+
+
+
+
+
+}
+
+function cerrarModalMod() {
+
+    $(".modal_fondo").fadeOut("fast");
+    $(".div_modal").fadeOut("fast");
+    $(".modal_mmath").hide();
+    $(".modal_ingl").hide();
+    $(".modal_cna").hide();
+    $(".modal_ciud").hide();
+    $(".modal_lect").hide();
+}
+

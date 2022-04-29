@@ -7,6 +7,7 @@
         <script type="text/javascript" src="Js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript" src="Js/Controlador.js"></script>
         <script type="text/javascript" src="Js/jqueryForms.js"></script>
+        <script type="text/javascript" src="Js/alerts.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -14,6 +15,13 @@
 
         </div>
         <div class="div_topBar">
+            <div class="icon_user" onclick="cargarPagPerfil()">
+                
+            </div>
+            <div class="name_user">
+            Jeisson Duvan Hernandez Antonio
+            </div>
+          
 
         </div>
 
@@ -22,8 +30,7 @@
             <div class="div_menu">
                 <ul class="ul_menu">
                     <li>Inicio</li>
-                    <li id="li_mod" onclick="cargarPagModulo()">Modulos</li>
-                    <li>Perfil</li>
+                    <li id="li_mod" onclick="cargarPagModulo()">Modulos</li>                  
                     <li id="li_reg" onclick="verMenuRegistro(this.id)">Registar Usuarios</li>
                     <ul class="ul_regMenu" hidden>
                         <li id="alumno" onclick="cargarPagina(this.id)"> Alumno</li>
