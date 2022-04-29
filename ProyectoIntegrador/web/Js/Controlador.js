@@ -49,8 +49,24 @@ function nuevaUsuario() {
 
             }
         });
-
-
   
+}
+
+function inicioSesion(PERS_USERNAME, PERS_PASSWORD, modulo) {
+
+
+
+    $.post("ControladorPrincipal", {PERS_USERNAME: PERS_USERNAME, PERS_PASSWORD: PERS_PASSWORD, modulo: modulo}, function (data) {
+
+        var d = parseInt(data);
+
+        if (d === 1) {
+            window.location.replace("Principal.jsp");
+        } else {
+
+            alert("Usuario o Contraseña Incorrecta")
+        }
+
+    });
 }
 
