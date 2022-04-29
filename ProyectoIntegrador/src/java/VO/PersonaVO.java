@@ -25,6 +25,12 @@ public class PersonaVO {
         this.PERS_PASSWORD = PERS_PASSWORD;
     }
 
+    public PersonaVO(String PERS_USERNAME, String PERS_PASSWORD) {
+        this.PERS_USERNAME = PERS_USERNAME;
+        this.PERS_PASSWORD = PERS_PASSWORD;
+    }
+
+    
     public String getPERS_ID() {
         return PERS_ID;
     }
