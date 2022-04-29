@@ -1,7 +1,8 @@
 <div class="div_formUser">     
     <div class="div_form">
         <div class="div_banner">
-            Formulario de Registro Estudiante           
+            Formulario de Registro Estudiante     
+         
         </div>
         <br>
         <form action="ControladorPrincipal" method="post" id="form_persona">

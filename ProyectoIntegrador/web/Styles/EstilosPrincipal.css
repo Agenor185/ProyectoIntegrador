@@ -2,6 +2,79 @@
     margin: 0;
 }
 
+/* ESTILSO ALERTAS */
+.alerta{
+    z-index: 5;
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    background-color: #e72727;
+    color: #FFF;
+    padding: 15px;
+    width: auto;
+    height: auto;
+    font-family: RobotoMedium;
+    font-size: 16px;
+    display: none;
+    box-shadow: rgba(0,0,0,0.2) 0px 0px 30px;
+
+}
+
+.alert-text{
+
+    float: left;
+    margin-top: 8px;
+    margin-left: 15px;
+}
+
+.alerta .alert-close-bttn{
+    float: right;
+    width: 15px;
+    height: 15px;
+    margin-right:   5px;
+    margin-left: 20px;
+    margin-top: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+    border:none;
+    background: url(Icons/times-solid.svg) no-repeat;
+    box-shadow: none;
+
+
+}
+
+.alerta .alert-check-icon{
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right:   0px;
+    margin-top: 2.8px;
+    vertical-align: middle;
+    cursor: pointer;
+    border:none;
+    background: url(Icons/check-circle-regular.svg) no-repeat;
+    box-shadow: none;
+
+
+}
+
+.alerta .alert-error-icon{
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right:   0px;
+    margin-top: 2.8px;
+    vertical-align: middle;
+    cursor: pointer;
+    border:none;
+    background: url(Icons/exclamation-triangle-solid.svg) no-repeat;
+    box-shadow: none;
+
+
+}
+
+
+/**/
 a{
     text-decoration: none;
     color: #dddddd;
@@ -10,25 +83,53 @@ a{
 .div_topBar{
     width: auto;
     height: 60px;
-      background: #0597F2;  
+    background: #0597F2;
+}
+
+.name_user{
+
+    float: right;
+    font-family: RobotoMedium;
+    font-size: 20px;
+    margin-right: 25px;
+    color: #FFF;
+    margin-top: 16px;
+    text-shadow: rgba(0,0,0,0.3) 0px 0px 5px;
+}
+
+.icon_user{
+    float: right;
+    width: 45px;
+    height: 45px;
+    margin-top: 6px;
+    margin-right: 20px;
+    background-color: #FFF;
+    border-radius: 45px;
+    text-align: center;
+    font-size: 40px;
+    font-family: RobotoBold;
+    color: #0597F2;
+    cursor: pointer;
+
+
 }
 
 .div_leftBar{
     width: 220px;
     height: calc(100% - 60px);
-    background-color: #2b2b2b;    
+    background-color: #2b2b2b;
 }
 
 .div_leftBar .div_menu{
     color: #dddddd;
-    font-family: RobotoMedium;    
+    font-family: RobotoMedium;
 }
 
 .div_menu ul{
     position: absolute;
-   list-style: none; 
-   padding-left: 15px;
-   
+    list-style: none;
+    padding-left: 15px;
+
 }
 
 .div_menu ul li {
@@ -41,27 +142,28 @@ a{
 
 li.selected{
     background-color: #0597F2;
-   color: #ffffff;
+    color: #ffffff;
 }
 
 .div_menu ul li:hover {
-   background-color: #0597F2;
-   color: #ffffff;
-   cursor: pointer;     
+    background-color: #0597F2;
+    color: #ffffff;
+    cursor: pointer;
 }
 
-.div_menu .ul_regMenu li:hover{ 
+.div_menu .ul_regMenu li:hover{
     width: 170px;
     background-color: #744FA3;
-    color: #ffffff;}
+    color: #ffffff;
+}
 
 
-.div_container{           
-  
+.div_container{
+
     position: absolute;
     height: calc(100% - 65px);
     width:  calc(100% - 222px);
-  
+
     margin-top: 60px;
     margin-left: 220px;
 }
@@ -69,36 +171,36 @@ li.selected{
 /* Estilos Registro Usuario*/
 
 .div_formUser, .div_formUser2{
-       display: flex;
+    display: flex;
     position: absolute;
     width: 100%;
-    height: 100%;   
-     justify-content: center;
+    height: 100%;
+    justify-content: center;
     background: url(../Images/fondoRegistro.jpg);
 }
 
 
 
-.div_form{  
- 
+.div_form{
+
     background-color: #ffffff;
     position: absolute;
     font-family: RobotoRegular;
     width: 70%;
-    height: calc(100% - 140px); 
+    height: calc(100% - 140px);
     padding: 60px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     overflow:auto;
     overflow-x: hidden;
-    
+
 }
 
 .div_form table{
-   
-    
-    
+
+
+
 }
 
 .div_banner{
@@ -118,22 +220,22 @@ li.selected{
 
 /* ESTILOS MODULOS PRINCIPAL */
 
-.div_modulos{  
- 
+.div_modulos{
+
     background-color: #ffffff;
     position: absolute;
     font-family: RobotoRegular;
     width: 70%;
-    height: calc(100% - 65px); 
+    height: calc(100% - 65px);
     padding: 60px;
     padding-bottom: 0.5px;
-    margin-top: 10px; 
+    margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     overflow:auto;
     overflow-x: hidden;
-    
-    
+
+
 }
 
 .div_modMat{
@@ -160,4 +262,30 @@ li.selected{
 
 .mod_ing{
     background-color: #744FA3;
+}
+
+/*ESTILOS PERFIL*/
+.div_perUser{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+
+}
+
+.info_perfil{
+    width: 90%;
+    margin: 20px;
+}
+
+.div_infoUser{
+    padding: 20px;
+}
+
+.div_infoUser table tr th{
+    font-family: RobotoRegular;
+    padding: 15px;
+    text-align: left;
+    
 }

@@ -23,11 +23,13 @@ function verMenuRegistro(id) {
     }
 }
 
-function cargarPagModulo(){
-    
+function cargarPagModulo(){    
      $(".div_container").load('Modulos/modulosPrincipal.jsp');
 }
 
+function cargarPagPerfil(){    
+     $(".div_container").load('Perfiles/PerfilUsuario.jsp');
+}
 
 
 /* FUNCIONES REGISTRO USUARIO*/
@@ -35,16 +37,16 @@ function cargarPagModulo(){
 /* AJAX ENVIO REGISTRO */
 
 
-function nuevaUsuario() {
-    alert("Envio 1 ");
-    alert($("#form_persona").serialize());
+function nuevaUsuario() {  
+ 
         $.ajax({
             type: 'post',
             url: $("#form_persona").attr('action'),
             data: $("#form_persona").serialize(),
             success: function (data) {
-               alert("Envio");
-           
+               alertSucsses("¡Registro Exitoso!");
+               $("#form_persona")[0].reset();
+
             }
         });
 
