@@ -2,18 +2,21 @@ package Controller;
 
 import DAO.AlumnoDAO;
 import DAO.DocenteDAO;
+import DAO.LoginDao;
 import DAO.PersonaDAO;
 import VO.AlumnoVO;
 import VO.DocenteVO;
 import VO.PersonaVO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +29,7 @@ public class ControladorPrincipal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -49,7 +52,7 @@ public class ControladorPrincipal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+PrintWriter out = response.getWriter();
         System.out.println("ENTROO AL CONTROLADOR");
 
         String modulo = "";
@@ -58,6 +61,32 @@ public class ControladorPrincipal extends HttpServlet {
             modulo = request.getParameter("modulo");
         } else {
             modulo = request.getParameter("modulo");
+        }
+
+        if (modulo.equals("iniciosesion")) {
+
+            System.out.println("INICIO SESION");
+            String PERS_USERNAME = request.getParameter("PERS_USERNAME");
+            String PERS_PASSWORD = request.getParameter("PERS_PASSWORD");
+
+            PersonaVO pers = new PersonaVO(PERS_USERNAME, PERS_PASSWORD);
+
+            LoginDao log = new LoginDao();
+
+            try {
+
+                if (log.validarLogin(pers)) {
+
+                   out.println(1);
+                  
+                } else {
+                   
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
         if (modulo.equals("nuevoUsuario")) {

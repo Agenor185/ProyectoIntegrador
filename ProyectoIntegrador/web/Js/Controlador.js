@@ -23,9 +23,9 @@ function verMenuRegistro(id) {
     }
 }
 
-function cargarPagModulo(){
-    
-     $(".div_container").load('Modulos/modulosPrincipal.jsp');
+function cargarPagModulo() {
+
+    $(".div_container").load('Modulos/modulosPrincipal.jsp');
 }
 
 
@@ -38,17 +38,33 @@ function cargarPagModulo(){
 function nuevaUsuario() {
     alert("Envio 1 ");
     alert($("#form_persona").serialize());
-        $.ajax({
-            type: 'post',
-            url: $("#form_persona").attr('action'),
-            data: $("#form_persona").serialize(),
-            success: function (data) {
-               alert("Envio");
-           
-            }
-        });
+    $.ajax({
+        type: 'post',
+        url: $("#form_persona").attr('action'),
+        data: $("#form_persona").serialize(),
+        success: function (data) {
+            alert("Envio");
 
-
-  
+        }
+    });
 }
 
+/* AJAX INICIO SESION */
+
+function inicioSesion(PERS_USERNAME, PERS_PASSWORD, modulo) {
+
+
+
+    $.post("ControladorPrincipal", {PERS_USERNAME: PERS_USERNAME, PERS_PASSWORD: PERS_PASSWORD, modulo: modulo}, function (data) {
+
+        var d = parseInt(data);
+
+        if (d === 1) {
+            window.location.replace("Principal.jsp");
+        } else {
+
+            alert("Usuario o Contraseña Incorrecta")
+        }
+
+    });
+}
