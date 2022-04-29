@@ -221,12 +221,12 @@ li.selected{
 /* ESTILOS MODULOS PRINCIPAL */
 
 .div_modulos{
-
+    z-index: 1;
     background-color: #ffffff;
     position: absolute;
     font-family: RobotoRegular;
-    width: 70%;
-    height: calc(100% - 65px);
+    width: auto;
+    height: calc(100% - 66px);
     padding: 60px;
     padding-bottom: 0.5px;
     margin-top: 10px;
@@ -234,6 +234,7 @@ li.selected{
     border-radius: 5px;
     overflow:auto;
     overflow-x: hidden;
+    overflow-y: hidden;
 
 
 }
@@ -250,18 +251,160 @@ li.selected{
     text-align: center;
     margin-left: 60px;
     margin-bottom: 50px;
+      overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .mod_mate{
     background-color: #d62638;
+    cursor: pointer;
 }
 
 .mod_esp{
-    background-color: #1ACC6C;
+    background-color: #77bcd4;
+      cursor: pointer;
 }
 
 .mod_ing{
     background-color: #744FA3;
+      cursor: pointer;
+}
+
+.mod_syc{
+    background-color: #d77d7d;
+      cursor: pointer;
+}
+
+.mod_cna{
+    background-color: #4fcf8b;
+      cursor: pointer;
+}
+
+.div_modal{
+    
+    z-index: 3;
+    position: relative;
+    margin: auto;
+    margin-top: 40px;
+    width: 830px;
+    padding: 20px;
+    height: 470px;
+    background-color: #FFF;
+    font-family: RobotoRegular;
+    border-radius: 8px;
+    box-shadow: rgba(0,0,0,0.2) 0px 0px 8px;
+    display: none;
+  
+    
+}
+.modal_closeBttn{
+    float: right;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    background-color: #e72727;
+    text-align: center;
+    padding: 3px;
+    margin-right:  -35px;
+    margin-top: -30px;   
+    cursor: pointer;
+}
+
+.modal_closeBttn img{
+    
+    width: 25px;
+    height: 25px;
+}
+
+.modal_fondo{
+     
+    z-index: 2;
+    background-color: rgba(0,0,0,0.3);
+    position: relative;
+    font-family: RobotoRegular;
+    width: auto;
+    height: calc(100% - 56px);
+    padding: 60px;
+    padding-bottom: 0.5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    backdrop-filter: blur(6px);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: none;
+        
+}
+
+.modal_titulo{
+    
+    font-family: RobotoBold;
+    font-size: 28px;
+    padding: 10px;
+    background-color: #744FA3;
+    color: #FFF;
+}
+
+.modal_mmath, .modal_lect , .modal_ingl , .modal_ciud, .modal_cna{
+    float: left;
+    margin: 10px;
+    padding: 10px;
+    width: 450px;
+    height: auto;
+    text-align: justify;
+   
+}
+
+.modal_link{
+    position: absolute;
+    font-size: 12px;
+    width: 420px;
+    text-align: right;
+    font-family: RobotoBold;
+    margin-top: 0px;
+    margin-right: 20px;
+    top:380px;
+    left: 400px;
+        
+}
+
+.bttn_prueba{
+   
+   position: absolute;
+     top:420px;
+    left: 650px;
+ 
+    
+}
+
+.modal_link a{
+    color: #0597F2;
+    text-decoration:  underline;
+    font-family: RobotoMedium;
+    
+}
+
+.modal_img {
+    float: left;
+    width: 210px;
+    margin-right: 130px;
+    margin-left: -16px;
+}
+.modal_img img{
+    width: 400px;
+    height: 400px;
+}
+
+.img_link{
+    position: absolute;
+    margin: 30px;
+    margin-top: -35px;
+    font-size: 12px;  
+    font-family: RobotoMedium;
+}
+
+.img_link a{
+    color:  #0597F2;   
+   
 }
 
 /*ESTILOS PERFIL*/

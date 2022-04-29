@@ -16,7 +16,7 @@
         </div>
         <div class="div_topBar">
             <div class="icon_user" onclick="cargarPagPerfil()">
-                J
+                
             </div>
             <div class="name_user">
             Jeisson Duvan Hernandez Antonio
