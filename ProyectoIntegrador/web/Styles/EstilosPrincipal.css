@@ -102,7 +102,7 @@ a{
     width: 40px;
     height: 40px;
     margin-top: 6px;
-    margin-right: 20px; 
+    margin-right: 20px;
     background-color: #FFF;
     border-radius: 40px;
     text-align: center;
@@ -115,18 +115,18 @@ a{
 }
 
 .icon_session {
-     float: right;
- 
-   margin-right: 10px;
+    float: right;
 
-    cursor: pointer;    
+    margin-right: 10px;
+
+    cursor: pointer;
 }
 
 .icon_session img{
-       width: 40px;
+    width: 40px;
     height: 40px;
     margin-top: 7px;
-    
+
 }
 
 .div_leftBar{
@@ -272,13 +272,13 @@ li.selected{
     text-shadow: rgba(0,0,0,0.8) 0px 0px 8px;
 }
 
-.div_modMat img{    
-   float: right;
+.div_modMat img{
+    float: right;
     width: 80px;
     height: 80px;
-   padding: 5px;
-   background: rgba(0,0,0,0.5);
-   border-radius:  5px;
+    padding: 5px;
+    background: rgba(0,0,0,0.5);
+    border-radius:  5px;
 }
 
 
@@ -286,37 +286,37 @@ li.selected{
     background-color: #d62638;
     background: url(../Images/math.jfif) center;
     cursor: pointer;
- 
- 
+
+
 }
 
 
 .mod_esp{
     background-color: #77bcd4;
-      cursor: pointer;
-         background: url(../Images/book.jpg) center;
+    cursor: pointer;
+    background: url(../Images/book.jpg) center;
 }
 
 .mod_ing{
     background-color: #744FA3;
-      cursor: pointer;
-           background: url(../Images/eng.jpg) center;
+    cursor: pointer;
+    background: url(../Images/eng.jpg) center;
 }
 
 .mod_syc{
     background-color: #d77d7d;
-      cursor: pointer;
-       background: url(../Images/syc.jpg) center;
+    cursor: pointer;
+    background: url(../Images/syc.jpg) center;
 }
 
 .mod_cna{
     background-color: #4fcf8b;
-      cursor: pointer;
-      background: url(../Images/nat.jpg) center;
+    cursor: pointer;
+    background: url(../Images/nat.jpg) center;
 }
 
 .div_modal{
-    
+
     z-index: 3;
     position: relative;
     margin: auto;
@@ -329,8 +329,8 @@ li.selected{
     border-radius: 8px;
     box-shadow: rgba(0,0,0,0.2) 0px 0px 8px;
     display: none;
-  
-    
+
+
 }
 .modal_closeBttn{
     float: right;
@@ -341,18 +341,18 @@ li.selected{
     text-align: center;
     padding: 3px;
     margin-right:  -35px;
-    margin-top: -30px;   
+    margin-top: -30px;
     cursor: pointer;
 }
 
 .modal_closeBttn img{
-    
+
     width: 25px;
     height: 25px;
 }
 
 .modal_fondo{
-     
+
     z-index: 2;
     background-color: rgba(0,0,0,0.3);
     position: relative;
@@ -367,11 +367,11 @@ li.selected{
     overflow-x: hidden;
     overflow-y: hidden;
     display: none;
-        
+
 }
 
 .modal_titulo{
-    
+
     font-family: RobotoBold;
     font-size: 28px;
     padding: 10px;
@@ -386,7 +386,7 @@ li.selected{
     width: 450px;
     height: auto;
     text-align: justify;
-   
+
 }
 
 .modal_link{
@@ -399,23 +399,23 @@ li.selected{
     margin-right: 20px;
     top:380px;
     left: 400px;
-        
+
 }
 
 .bttn_prueba{
-   
-   position: absolute;
-     top:420px;
+
+    position: absolute;
+    top:420px;
     left: 650px;
- 
-    
+
+
 }
 
 .modal_link a{
     color: #0597F2;
     text-decoration:  underline;
     font-family: RobotoMedium;
-    
+
 }
 
 .modal_img {
@@ -434,24 +434,24 @@ li.selected{
     position: absolute;
     margin: 30px;
     margin-top: -35px;
-    font-size: 12px;  
+    font-size: 12px;
     font-family: RobotoMedium;
 }
 
 .img_link a{
-    color:  #0597F2;   
-   
+    color:  #0597F2;
+
 }
 
 /*ESTILOS PRUEBAS*/
 
 .div_prueba{
-    
-     z-index: 1;
+
+    z-index: 1;
     background-color: #ffffff;
     position: absolute;
     width: auto;
-    height: calc(100% - 66px);    
+    height: calc(100% - 66px);
     padding-bottom: 0.5px;
     margin-top: 0px;
     margin-bottom: 10px;
@@ -460,40 +460,40 @@ li.selected{
     overflow-x: hidden;
 }
 .pregunta_rta {
- padding-left: 15px;
-    
+    padding-left: 15px;
+
 }
 
 .pregunta_rta span{
-    font-size: 18px;    
+    font-size: 18px;
     font-family: RobotoBold;
-    
+
 }
 
 .cont_preguntas{
-    padding: 50px;   
+    padding: 50px;
 
 }
 
 .num_preg{
-    
+
     width: 100%;
     height: 30px;
     background-color: #744FA3;
-   color: #fff;
+    color: #fff;
     font-size: 24px;
     font-family: RobotoMedium;
     padding: 15px;
     padding-left: 20px;
-        
+
 }
 
 .prueba_preg{
-    
+
     font-family: RobotoRegular;
     margin: 10px;
     font-size: 16px;
-   
+
 }
 
 .mensaje_titulo{
@@ -509,7 +509,7 @@ li.selected{
     margin: 15px;
     font-family: RobotoBold;
     color: #744FA3;
-   
+
 }
 
 .resp_corr{
@@ -524,8 +524,159 @@ li.selected{
     color: #FFF;
     font-family: RobotoMedium;
     padding: 10px;
-     border-radius: 5px;
+    border-radius: 5px;
 }
+
+/*ESTILOS PROGRESO ESTUDIANTES*/
+
+.div_progreso{
+    z-index: 1;
+    position: absolute;
+    padding: 40px;
+    width: 90%;
+    height: calc(100% - 80px);
+}
+
+.banner_prog{
+
+    width: 100%;
+    height: 30px;
+    padding: 15px;
+    font-size: 26px;
+    font-family: RobotoMedium;
+    background-color: #744FA3;
+    color: #FFF;
+}
+
+.prog_nombre, .prog_grado {
+
+    font-size: 22px;
+    font-family: RobotoRegular;
+    margin-left: 20px;
+}
+.nom_prueba{
+    font-size: 22px;
+    font-family: RobotoRegular;
+    padding: 20px;
+}
+
+.inten_prueba{
+
+    width: 98%;
+    height: 30px;
+    padding: 15px;
+    margin-left: 20px;
+    font-size: 18px;
+    font-family: RobotoRegular;
+    background-color: #FFF;
+    color: #2b2b2b;
+    box-shadow: rgba(0,0,0,0.18) 0px 0px 20px;
+    border-radius: 8px;
+
+    margin: 15px;
+    transition: ease;
+    transition-duration: .3s;
+    cursor: pointer;
+}
+
+.int_fecha{
+    float: right;
+    background-color: #744FA3;
+    color: #FFF;
+    width: 180px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: RobotoBold;
+    border-radius: 10px;
+    text-align: center;
+
+
+}
+
+.int_txt{
+    float: left;
+    margin-left: 10px;
+    padding: 5px;
+    color: #744FA3;
+    font-size: 18px;
+    font-family: RobotoMedium;
+    text-align: center;
+
+}
+
+.int_nota{
+    float: left;
+    margin-left: 20px;
+    width: 80px;
+    height: 20px;
+    padding: 5px;
+    background-color: #0597F2;
+    color: #FFF;
+    font-size: 18px;
+    font-family: RobotoBold;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.inten_prueba:hover
+{
+    background-color: #2b2b2b;
+    color: #FFF;
+
+}
+
+.inten_prueba:hover .int_txt
+{
+    color: #FFF;
+}
+.inten_prueba:hover .int_fecha
+{
+    background-color: #FFF;
+    color: #744FA3;
+}
+
+.div_modal_prog
+{
+     width: 990px;
+  margin-top: -20px;
+    height: 570px;
+}
+
+.prog_result{
+    position: fixed;
+    bottom: 60px;
+    right: 160px;
+    width: 100px;
+    text-align: center;
+    height: auto;
+    padding: 10px;
+    background-color:#34c85d;
+    color: #FFF;
+    font-size: 20px;
+    font-family: RobotoBold;
+    border-radius: 15px;
+}
+
+.prog_preg{
+   
+    width: 98%;
+    height: auto;
+    padding: 10px;
+    font-size: 20px;
+    font-family: RobotoMedium;
+    background-color: #744FA3;
+    color: #FFF;
+}
+.prog_tpreg{    
+    width: 96%;
+    height: auto;
+    margin-left: 15px;
+}
+
+
+
+
 
 
 
@@ -554,5 +705,5 @@ li.selected{
     font-family: RobotoRegular;
     padding: 15px;
     text-align: left;
-    
+
 }

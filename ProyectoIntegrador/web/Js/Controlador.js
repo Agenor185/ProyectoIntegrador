@@ -31,6 +31,10 @@ function cargarPagPerfil() {
     $(".div_container").load('Perfiles/PerfilUsuario.jsp');
 }
 
+function verResultados() {
+    $(".div_container").load('Resultados/ProgresoEstudiantes.jsp');
+}
+
 
 /* FUNCIONES REGISTRO USUARIO*/
 
@@ -211,5 +215,13 @@ function revisarPrueba() {
 function salirPrueba() {
     $(".div_container").load('Modulos/modulosPrincipal.jsp');
 
+}
+
+/* FUNCIONES PROGRESO ESTUDIANTES **/
+
+function abrirModalProg(){    
+    $(".modal_fondo").fadeIn("fast");
+      $(".div_modal").fadeIn("fast");
+    
 }
 

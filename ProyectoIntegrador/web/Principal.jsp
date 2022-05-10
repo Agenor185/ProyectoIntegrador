@@ -68,6 +68,7 @@ String PERS_ID = session.getAttribute("sesion").toString();
                     
                     <li>Inicio</li>
                     <li id="li_mod" onclick="cargarPagModulo()">Modulos</li> 
+                      <li id="li_reg" onclick="verResultados(this.id)">Resultados</li>
                     <li id="li_reg" onclick="verMenuRegistro(this.id)">Registar Usuarios</li>
                     <ul class="ul_regMenu" hidden>
                         <li id="alumno" onclick="cargarPagina(this.id)"> Alumno</li>

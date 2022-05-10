@@ -5,6 +5,8 @@ body {
     font-family: RobotoMedium;
     height: 100vh;
     font-family: ReobotoRegular;
+    background: url(../Images/patron.png); 
+    background-size: 50%;
 }
 .login-box{
     width: 320px;
@@ -12,7 +14,7 @@ body {
     background:#2a2a2a;
     color: #ffffff;
     top: 50%;
-    left: 50%;
+    left: 70%;
     position:absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;

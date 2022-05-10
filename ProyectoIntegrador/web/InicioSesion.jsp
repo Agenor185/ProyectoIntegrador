@@ -21,6 +21,13 @@ response.sendRedirect("Principal.jsp");
         <title>Inicio Sesion</title>
     </head>
     <body>
+        <div class="logo">
+            <img src="Images/logo.png" style="
+                 width: 600px; 
+                 height: 600px;
+                 margin-left: 10%;
+                 margin-top: 6%; "alt="alt"/>
+        </div>
         
         <div class="login-box">
             <img src="Images/escudo.png" class="avatar" alt="Avatar Image">
