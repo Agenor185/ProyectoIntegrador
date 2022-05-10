@@ -56,16 +56,41 @@ function inicioSesion(PERS_USERNAME, PERS_PASSWORD, modulo) {
 
 
 
-    $.post("ControladorPrincipal", {PERS_USERNAME: PERS_USERNAME, PERS_PASSWORD: PERS_PASSWORD, modulo: modulo}, function (data) {
+    if (PERS_USERNAME !== "") {
+        if (PERS_PASSWORD !== "") {
+            $.post("ControladorPrincipal", {PERS_USERNAME: PERS_USERNAME, PERS_PASSWORD: PERS_PASSWORD, modulo: modulo}, function (data) {
 
-        var d = parseInt(data);
+                var d = parseInt(data);
 
-        if (d === 1) {
-            window.location.replace("Principal.jsp");
+                if (d === 1) {
+                    window.location.replace("Principal.jsp");
+                } else {
+
+                    alertError("Usuario o Contraseña Incorrectos");
+                }
+
+            });
+
         } else {
 
-            alert("Usuario o Contraseña Incorrecta");
+            alertError("El campo de la contraseña no puede estar vacio");
         }
+    } else {
+
+        alertError("El campo del usuario no puede estar vacio");
+    }
+
+
+
+}
+
+/*CERRAR SESION*/
+
+function cerrarSesion(modulo) {
+
+    $.post("ControladorPrincipal", {modulo: modulo}, function (data) {
+        window.location.replace("InicioSesion.jsp");
+        alertSucsses("Sesion cerrada correctamente");
 
     });
 }
@@ -78,26 +103,32 @@ function moduloInfo(id) {
     if (id === "math") {
         $(".modal_titulo").text("Prueba de Matematicas");
         $(".modal_mmath").fadeIn("slow");
+             $(".modal_img").html(" <img src='Images/math_img.png' alt='alt'/>");
+      
     }
 
     if (id === "esp") {
 
-        $(".modal_titulo").text("Prueba de Compresion Lectora");
+        $(".modal_titulo").text("Prueba de Lectura Critica");
         $(".modal_lect").fadeIn("slow");
+        $(".modal_img").html(" <img style='height: 350px; width: 350px;' src='Images/lec_img.png' alt='alt'/>");
     }
     if (id === "ing") {
         $(".modal_titulo").text("Prueba de Ingles");
-         $(".modal_ingl").fadeIn("slow");
+        $(".modal_ingl").fadeIn("slow");
+          $(".modal_img").html(" <img style='height: 300px; width: 350px;' src='Images/ing_img.png' alt='alt'/>");
     }
 
     if (id === "syc") {
         $(".modal_titulo").text("Prueba de Ciencias Sociales y Ciudadania");
-         $(".modal_ciud").fadeIn("slow");
+        $(".modal_ciud").fadeIn("slow");
+              $(".modal_img").html(" <img style='height: 300px; width: 350px;' src='Images/soc_img.png' alt='alt'/>");
     }
 
     if (id === "cna") {
         $(".modal_titulo").text("Prueba de Ciencias Naturales");
-         $(".modal_cna").fadeIn("slow");
+        $(".modal_cna").fadeIn("slow");
+         $(".modal_img").html(" <img style='height: 350px; width: 350px;' src='Images/cna_img.png' alt='alt'/>");
     }
 
 
@@ -115,5 +146,70 @@ function cerrarModalMod() {
     $(".modal_cna").hide();
     $(".modal_ciud").hide();
     $(".modal_lect").hide();
+}
+
+/* PRUEBAS */
+function  abrirPrueba() {
+    $(".div_container").load('Pruebas/PruebaCiudadania.jsp');
+
+}
+
+
+function obtenerPrueaba() {
+
+
+    if ($("#prueba").serialize().length >= 169) {
+        $.ajax({
+            type: 'post',
+            url: $("#prueba").attr('action'),
+            data: $("#prueba").serialize(),
+            success: function (data) {
+                $(".modal_fondo").fadeIn("fast");
+                $(".div_modal").fadeIn("fast");
+                $(".mensaje_titulo").html("<br> <span style='color:  #4fcf8b'> Prueba terminada con exito. </span><br>  <br> Puntaje:<br><span style='color:#744FA3'>" + data + "/100<span>");
+
+            }
+        });
+    } else {
+           alertError("Faltan preguntas por responder");
+    }
+
+}
+
+function revisarPrueba() {
+    $(".modal_fondo").fadeOut("fast");
+    $(".div_modal").fadeOut("fast");
+    $("#send_prue").hide();
+
+    $("input[type='radio']").prop('disabled',true);
+        
+    
+    $("input[type='radio']:checked").each(function () {
+        var idVal = $(this).attr("id");
+      
+        if($(this).attr("value") === '3'){
+ 
+        $("label[for='" + idVal + "']").addClass("resp_corr");
+    } else {
+            $("label[for='" + idVal + "']").addClass("resp_incor");
+        
+    }
+    });
+
+    /* for (var i = 0; i < 20; i++) {
+     console.log(i);
+     if(i<10){
+     
+     $("label[for='PP0"+(i+1)+"']").css("background-color", "red");
+     } else {
+     $("label[for='PP"+(i+1)+"']").css("background-color", "yellow");
+     }
+     
+     }*/
+}
+
+function salirPrueba() {
+    $(".div_container").load('Modulos/modulosPrincipal.jsp');
+
 }
 
