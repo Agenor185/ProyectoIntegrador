@@ -638,8 +638,8 @@ li.selected{
 
 .div_modal_prog
 {
-     width: 990px;
-  margin-top: -20px;
+    width: 990px;
+    margin-top: -20px;
     height: 570px;
 }
 
@@ -659,7 +659,7 @@ li.selected{
 }
 
 .prog_preg{
-   
+
     width: 98%;
     height: auto;
     padding: 10px;
@@ -668,7 +668,7 @@ li.selected{
     background-color: #744FA3;
     color: #FFF;
 }
-.prog_tpreg{    
+.prog_tpreg{
     width: 96%;
     height: auto;
     margin-left: 15px;
@@ -676,9 +676,90 @@ li.selected{
 
 
 
+/* ESTILOS BUSQUEDA ESTUDIANTE */
+
+.div_buscarEstu{
+    z-index: 1;
+    position: absolute;
+    padding: 40px;
+    width: 90%;
+    height: calc(100% - 80px);
+    background-color: #f3f7ff;
+
+}
+
+.div_busqueda{
+
+    padding: 40px;
+    font-size: 18px;
+    font-family: RobotoMedium;
+    
+}
+
+.div_rBusqueda{
+
+    width: 95%;
+    vertical-align: central;
+    padding-left: 20px;
+
+}
+
+.div_rBusqueda .table{
+
+    width:100%;
+    border-collapse: collapse;
 
 
 
+}
+.div_rBusqueda .table thead th{
+
+    padding: 12px;
+    font-size: 14px;
+    text-align: left;
+    font-family: RobotoBold;
+      
+    color:#787878;
+}
+
+
+
+.div_rBusqueda  .table th{
+    font-size: 16px;
+    font-family: RobotoBold;
+    
+  
+}
+
+.div_rBusqueda  .table tbody tr td{
+    font-size: 16px;
+    font-family: RobotoRegular;
+    margin: 20px;
+    padding-left: 15px;   
+    background-color: #ffffff;
+    padding: 10px;
+   
+
+}
+
+
+
+.div_rBusqueda  .table tbody tr td img {
+
+    float: none;
+    padding: 12px;
+    cursor: pointer;
+
+}
+
+
+.div_rBusqueda  .table tbody tr{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: #FFF;
+  
+ 
+   
+}
 
 
 

@@ -32,9 +32,11 @@ function cargarPagPerfil() {
 }
 
 function verResultados() {
+    $(".div_container").load('Resultados/BuscarEstudiante.jsp');
+}
+function cargarResultados() {
     $(".div_container").load('Resultados/ProgresoEstudiantes.jsp');
 }
-
 
 /* FUNCIONES REGISTRO USUARIO*/
 
