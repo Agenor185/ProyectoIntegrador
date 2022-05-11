@@ -13,8 +13,9 @@ String PERS_ID = session.getAttribute("sesion").toString();
 
 <html>
     <head>
+        <title>ASaber - Plataforma Educativa</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-     
+        <link rel="icon" type="image/ico" href="Images/logo.ico"/>
         <link rel="stylesheet" href="Styles/EstilosPrincipal.css"/>
         <link rel="stylesheet" href="Styles/BasicStyles.css"/>
         <script type="text/javascript" src="Js/jquery-3.6.0.min.js"></script>

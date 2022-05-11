@@ -11,6 +11,8 @@ response.sendRedirect("Principal.jsp");
 <!DOCTYPE html>
 <html>
     <head>
+         <title>ASaber - Inicio Sesion</title>
+        <link rel="icon" type="image/ico" href="Images/favicon.ico"/>
         <link rel="stylesheet" href="Styles/EstilosPrincipal.css"/>
         <link rel="stylesheet" href="Styles/EstilosInicioSesion.css"/>
         <link rel="stylesheet" href="Styles/BasicStyles.css"/>
