@@ -1,0 +1,147 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box
+}
+
+body{
+    
+    font-family: RobotoMedium;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #0597F2;
+}
+.buscar{
+    position: absolute;
+    padding: 50px;
+    left: 540px;
+    top:10px;
+    right: 0px;
+   
+}
+.buscar input{
+    width: 0px;
+    height: 40px;
+    padding:0 20px;
+    font-size: 18px;
+    color: #000;
+    outline:none;
+    border: 1px solid silver;
+    border-radius:30px;
+    transition: all 0.6s ease;
+}
+.btn{
+    position: absolute;
+    top: 40px;
+    right: 540px;
+    background: #744FA3;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    color:white;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.buscar:hover input{
+    width:350px;
+}
+.buscar input:focus{
+    width:350px;
+}
+.name{
+    position: absolute;
+    padding: 10px;
+    left: 150px;
+    top: 280px;
+    right: 1150px;
+}
+.document{
+   position: absolute;
+    padding: 10px;
+    left: 600px;
+    top: 280px;
+    right: 750px; 
+}
+.curse{
+    position: absolute;
+    padding: 10px;
+    left: 1100px;
+    top: 280px;
+    right: 100px; 
+}
+.table{
+    width:100%;
+    border-collapse: collapse;
+}
+.table td,.table th{
+    padding:12px 15px;
+    border:1px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+}
+.table th{
+    background-color: darkblue;
+    color:#ffffff;
+}
+.table tbody tr:nth-child(even){
+    background-color: #f5f5f5;
+}
+
+@media(max-width: 500px){
+    .table thead{
+        display:none;    
+    }
+    
+    .table, .table tbody, .table tr, .table td{
+        display: block;
+        width: 100%; 
+    }
+    .table tr{
+        margin-bottom: 15px;
+    }
+    .table td{
+        text-align: right;
+        padding-left: 50%;
+        text-align: right;
+        position: relative;
+    }
+    .table td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+button{
+    cursor: pointer;
+    float: left;
+    border: none;
+    width: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 40px;
+    background: #0597F2;
+    box-shadow: 0px 2px 14px -5px #0597F2;
+    border-radius: 8px;
+    font-size: 16px;
+    color: black;
+    font-family: RobotoMedium;
+    margin: 10px;
+    transition: ease-out;
+    transition-duration: .3s;
+  
+}
+
+button:hover{
+    background: #54b3ee;
+
+}
+
