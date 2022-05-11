@@ -3,6 +3,8 @@ package DAO;
 
 import Controller.ConexionBD;
 import VO.AlumnoVO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class AlumnoDAO {
@@ -26,5 +28,37 @@ public class AlumnoDAO {
         
         
         return true;
+    }
+    
+    public boolean verificarAlumno(String PERS_ID) throws SQLException{
+        
+        boolean estado = false;
+         ConexionBD con = new ConexionBD();
+       con.ConexionBD();
+       
+       StringBuilder sql = new StringBuilder();
+       sql.append("SELECT PERS_ID FROM ALUMNO WHERE PERS_ID = '");
+       sql.append(PERS_ID);
+       sql.append("'");
+        System.out.println(sql.toString());
+       
+      ResultSet rs = con.obtenerDatos(sql.toString());
+      
+        while (rs.next()) {
+            if(rs.getString("PERS_ID").equals(PERS_ID)){
+            
+            estado = true;
+            }
+            
+            
+        }
+       
+       con.close();
+        
+        
+        return estado;
+    
+    
+    
     }
 }

@@ -7,8 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class LoginDao {
-   
+public class LoginDao { 
    
   
     

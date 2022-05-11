@@ -2,39 +2,34 @@
 
     <div class="div_modMat mod_mate" id="math" onclick="moduloInfo(this.id)">
         Matematicas
-        <br>
-        <br>
+        
         <img src="Styles/Icons/icon_math.png" />
     </div>
 
 
     <div class="div_modMat mod_esp" id="esp" onclick="moduloInfo(this.id)" >
         Lectura Critica
-        <br>
-        <br>
+       
         <img src="Styles/Icons/icon_esp.png" />
     </div>
 
     <div class="div_modMat mod_ing"  id="ing" onclick="moduloInfo(this.id)">
         Ingles
-        <br>
-        <br>
+       
         <img src="Styles/Icons/icon_ing.png"  />
     </div>
 
 
     <div class="div_modMat mod_syc"  id="syc" onclick="moduloInfo(this.id)">
         Ciencias Sociales y Ciudadanas
-        <br>
-        <br>
+      
         <img src="Styles/Icons/icon_ciu.png" >
     </div>
 
 
     <div class="div_modMat mod_cna" id="cna" onclick="moduloInfo(this.id)">
         Ciencias Naturales
-        <br>
-        <br>
+    
         <img src="Styles/Icons/icon_nat.png" >
     </div>
 
@@ -46,9 +41,10 @@
         <div class="modal_titulo">Prueba de Matematicas</div>
         <div class="modal_img">
             <img src="Images/math_img.png" alt="alt"/>
-            <div class="img_link">Illustration by <a href="https://icons8.com/illustrations/author/RogqKjMRAQ79">Polina Orlova
+            
+          <!--  <div class="img_link">Illustration by <a href="https://icons8.com/illustrations/author/RogqKjMRAQ79">Polina Orlova
                 </a> from <a href="https://icons8.com/illustrations">icons8</a> </div>
-
+ -->
         </div>
         <div class="modal_mmath" hidden>
 
@@ -148,6 +144,6 @@
         <div class="modal_link">
              <br>
             Fuente: <a href=" https://www.icfes.gov.co/documents/39286/2171114/Gu%C3%ADa+de+orientaci%C3%B3n+Saber+11.%C2%B0+2020-1.pdf" > Icfes Saber 11 Guia</a></div>
-        <button type="button" class="bttn_prueba">Iniciar Prueba</button>
+        <button type="button" onclick="abrirPrueba()" class="bttn_prueba">Iniciar Prueba</button>
     </div>
 </div>

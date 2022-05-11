@@ -1,12 +1,16 @@
 package Controller;
 
 import DAO.AlumnoDAO;
+import DAO.AlumnoPreguntaDAO;
 import DAO.DocenteDAO;
 import DAO.LoginDao;
 import DAO.PersonaDAO;
+import DAO.PruebaIntentoDAO;
+import VO.AlumnoPreguntaVO;
 import VO.AlumnoVO;
 import VO.DocenteVO;
 import VO.PersonaVO;
+import VO.PruebaIntentoVO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -22,6 +26,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ControladorPrincipal", urlPatterns = {"/ControladorPrincipal"})
 public class ControladorPrincipal extends HttpServlet {
@@ -29,7 +34,7 @@ public class ControladorPrincipal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -52,15 +57,106 @@ public class ControladorPrincipal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
         System.out.println("ENTROO AL CONTROLADOR");
 
         String modulo = "";
+        HttpSession sesion = request.getSession(true);
 
         if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
             modulo = request.getParameter("modulo");
         } else {
             modulo = request.getParameter("modulo");
+        }
+
+        if (modulo.equals("prueba")) {
+
+            String[] respuestas = new String[20];
+            String[] preguntas = new String[20];
+            String[] puntaje = new String[20];
+            for (int i = 0; i < 20; i++) {
+
+                if ((i + 1) < 10) {
+                    respuestas[i] = request.getParameter("PP0" + (i + 1));
+
+                    preguntas[i] = "PP0" + (i + 1);
+
+                } else {
+                    respuestas[i] = request.getParameter("PP" + (i + 1));
+                    preguntas[i] = "PP" + (i + 1);
+                }
+
+            }
+
+            for (int i = 0; i < 20; i++) {
+                if (respuestas[i].equals("3")) {
+
+                    puntaje[i] = "5";
+                } else {
+                    puntaje[i] = "0";
+                }
+            }
+
+            for (int i = 0; i < 20; i++) {
+                System.out.println(preguntas[i] + ": " + respuestas[i]);
+            }
+
+            PruebaIntentoDAO pidao = new PruebaIntentoDAO();
+            String PRIN_CODIGO = "PI_1";
+            int PRIN_INTENTO = 1;
+            try {
+
+                if (pidao.ultimoRegistro() != null) {
+
+                    PRIN_CODIGO = pidao.ultimoRegistro();
+                    String[] PRC_NUM = PRIN_CODIGO.split("_");
+                    PRIN_CODIGO = PRC_NUM[0] + "_" + (Integer.parseInt(PRC_NUM[1]) + 1);
+
+                }
+
+                if (pidao.ultimoIntento(sesion.getAttribute("sesion").toString()) != null) {
+                    PRIN_INTENTO = Integer.parseInt(pidao.ultimoIntento(sesion.getAttribute("sesion").toString())) + 1;
+
+                }
+
+                if (pidao.nuevoIntento(new PruebaIntentoVO(
+                        PRIN_CODIGO,
+                        PRIN_INTENTO,
+                        request.getParameter("pruebaCode"),
+                        sesion.getAttribute("sesion").toString(),
+                        ""))) {
+                    for (int i = 0; i < 20; i++) {
+
+                        AlumnoPreguntaDAO aldao = new AlumnoPreguntaDAO();
+                        aldao.nuevoIntento(new AlumnoPreguntaVO(
+                                sesion.getAttribute("sesion").toString(),
+                                preguntas[i],
+                                request.getParameter("pruebaCode"),
+                                respuestas[i],
+                                puntaje[i],
+                                PRIN_CODIGO));
+                    }
+
+                }
+                int sumaPuntaje = 0;
+                ;
+                for (int i = 0; i < 20; i++) {
+                    sumaPuntaje = sumaPuntaje + Integer.parseInt(puntaje[i]);
+
+                }
+                
+                out.println(sumaPuntaje);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        if (modulo.equals("cerrarsesion")) {
+
+            sesion.setAttribute("sesion", null);
+            response.sendRedirect("InicioSesion.jsp");
         }
 
         if (modulo.equals("iniciosesion")) {
@@ -77,10 +173,14 @@ PrintWriter out = response.getWriter();
 
                 if (log.validarLogin(pers)) {
 
-                   out.println(1);
-                  
+                    PersonaDAO pdao = new PersonaDAO();
+
+                    sesion.setAttribute("sesion", pdao.obtenerIdPersona(pers));
+
+                    out.println(1);
+
                 } else {
-                   
+
                 }
 
             } catch (SQLException ex) {
@@ -129,7 +229,7 @@ PrintWriter out = response.getWriter();
                         request.getParameter("SEG_NOMBRE").toUpperCase(),
                         request.getParameter("PRI_APELLIDO").toUpperCase(),
                         request.getParameter("SEG_APELLIDO").toUpperCase(),
-                        userName.toLowerCase(),
+                        userName.toLowerCase().replace(" ", ""),
                         password))) {
 
                     if (request.getParameter("tipo").equals("estudiante")) {
