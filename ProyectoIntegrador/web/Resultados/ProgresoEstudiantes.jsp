@@ -1,6 +1,21 @@
 
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="VO.AlumnoPreguntaVO"%>
+<%@page import="DAO.AlumnoPreguntaDAO"%>
+<%@page import="VO.PreguntaPruebaVO"%>
+<%@page import="DAO.PreguntaPruebaDAO"%>
+<%@page import="VO.PruebaVO"%>
+<%@page import="DAO.PruebaDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="VO.PersonaVO"%>
+<%
+
+    ArrayList<PersonaVO> estudiante = (ArrayList<PersonaVO>) session.getAttribute("infoEstu");
+    String PERS_ID ="";
+    request.setCharacterEncoding("UTF-8");
+%>
+
+<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
 <div class="div_progreso">
     <div class="banner_prog">
@@ -10,76 +25,114 @@
     <br>
 
     <div class="info_estu">
-        <div class="prog_nombre"><b>Nombre Estudiante:</b> FERNANDO ALEXANDER MAIGUAL DELGADO </div>
-        <div class="prog_grado"><b>Grado:</b> DECIMO  </div>        
+        <% for (PersonaVO personaVO : estudiante) {
+        PERS_ID = personaVO.getPERS_ID();
+        %>
+            
+
+        <div class="prog_nombre"><b>Nombre Estudiante:</b>
+            <%=personaVO.getPERS_PRINOMBRE() + " " + personaVO.getPERS_SEGNOMBRE()
+                    + " " + personaVO.getPERS_PRIAPELLIDO() + " " + personaVO.getPERS_SEGAPELLIDO()%> 
+
+        </div>
+        <div class="prog_grado"><b>Grado:</b> <%=personaVO.getPERS_USERNAME()%>  </div>    
+        <% } %>
     </div>
     <br>
     <br>
     <div class="prog_estu" >
-        <div class="nom_prueba"><b>Prueba:</b> <select id="id">
-                <option value="first">Matematicas</option>
-                <option value="second">Lectura Critica</option>
-                <option value="third">Ingles</option>
-                <option value="third">Ciencias Sociales y Ciudadania</option>
-                <option value="third">Ciencias Naturales</option>
+       
+        <select id="pruebas" style="margin-left: 15px; width: 400px;" onchange="cargarIntentos('<%=PERS_ID%>',this.value)">
+                <option selected disabled>Pruebas</option>
+                <%
+                    PruebaDAO prdao = new PruebaDAO();
+
+                    ArrayList<PruebaVO> pruebas = prdao.obetenerPruebas();
+
+                    for (PruebaVO prueba : pruebas) {
+
+                %>  
+
+                <option value="<%=prueba.getPRUE_CODIGO()%>"><%=prueba.getPRUE_NOMBRE()%></option> 
+                <%
+
+                    }
+
+                %>
+
             </select>
         </div>
-        
-        <div class="inten_prueba" onclick="abrirModalProg()">
-            <div class="int_txt"> Intento 1 </div>
-            <div class="int_nota">50/100</div> 
-            <div class="int_fecha">     Fecha 10/05/2022</div>
-        </div>
-             <div class="inten_prueba">
-             <div class="int_txt"> Intento 1 </div>
-            <div class="int_nota">50/100</div> 
-            <div class="int_fecha">     Fecha 10/05/2022</div>
-        </div>
-    
-             <div class="inten_prueba">
-          <div class="int_txt"> Intento 1 </div>
-            <div class="int_nota">50/100</div> 
-            <div class="int_fecha">     Fecha 10/05/2022</div>
-        </div>  
+                <div class="cont_Intenttos">
+      
+            
+   
+                </div>
+   
     </div>
 </div>
 
 <div class="modal_fondo">
     <div class="div_modal div_modal_prog"> 
-          <div class="modal_closeBttn" onclick="cerrarModalMod()"><img src="Images/close_bttn.png" alt="alt"/></div>
+        <div class="modal_closeBttn" onclick="cerrarModalMod()"><img src="Images/close_bttn.png" alt="alt"/></div>
         <div class="prog_result"> Puntaje: 50/100 </div>
         <div class="prog_prueb"> 
-            <div class="prog_preg">Pregunta 1</div>
+            
+            
+            <div class="cont_preguntas">
+
+        <form action="ControladorPrincipal" id="prueba">
+            <div class="prueba_preg" > 
+
+             
+               
+            </div>
+            
+        </form>
+
+
+    </div>
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          <!--  <div class="prog_preg">Pregunta 1</div>
             <br>
-          
+
             <div class="titulo_pregunta prog_tpreg"> 
-             En un municipio de Colombia, el alcalde desea restringir el tr√°nsito de menores
-             de edad por las v√≠as p√∫blicas despu√©s de las 12 de la noche, pues afirma que las
-             condiciones de seguridad en general no son las m√°s adecuadas para que los menores 
-             est√©n a esa hora en la calle y que, adem√°s, es una forma de responsabilizar m√°s a 
-             los padres de familia de la conducta de sus hijos, para ello dice que quiere convocar 
-             al pueblo para que apoye o rechace su decisi√≥n por medio de un plebiscito. 
-             <br>
-             <br>
-             La propuesta del alcalde NO es viable porque
+                En un municipio de Colombia, el alcalde desea restringir el tr·nsito de menores
+                de edad por las vÌas p˙blicas despuÈs de las 12 de la noche, pues afirma que las
+                condiciones de seguridad en general no son las m·s adecuadas para que los menores 
+                estÈn a esa hora en la calle y que, adem·s, es una forma de responsabilizar m·s a 
+                los padres de familia de la conducta de sus hijos, para ello dice que quiere convocar 
+                al pueblo para que apoye o rechace su decisiÛn por medio de un plebiscito. 
+                <br>
+                <br>
+                La propuesta del alcalde NO es viable porque
             </div>
             <BR>
             <br>
             <div class="pregunta_rta">
-                
+
                 <span> A. &nbsp;</span>
                 <br><br>
-                 <span> B. &nbsp;</span>
-                 <br><bR>
-                  <span> C. &nbsp;</span>
-                  <br><Br>
-                   <span> D. &nbsp;</span>
-                
-            </div>
-        
-        
+                <span> B. &nbsp;</span>
+                <br><bR>
+                <span> C. &nbsp;</span>
+                <br><Br>
+                <span> D. &nbsp;</span>
+
+            </div>-->
+
+
         </div>
-    
+
     </div>
-    
+
 </div>

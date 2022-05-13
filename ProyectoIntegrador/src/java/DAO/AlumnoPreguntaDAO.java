@@ -2,7 +2,9 @@ package DAO;
 
 import Controller.ConexionBD;
 import VO.AlumnoPreguntaVO;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class AlumnoPreguntaDAO {
 
@@ -33,13 +35,42 @@ public class AlumnoPreguntaDAO {
         sql.append("','");
         sql.append(apvo.getPRIN_CODIGO());
         sql.append("')");
-        
-        System.out.println("CONSULAT:"+sql.toString());
+
+        System.out.println("CONSULAT:" + sql.toString());
 
         if (con.ingresarDatos(sql.toString())) {
 
             estado = true;
         }
         return estado;
+    }
+
+    public ArrayList<AlumnoPreguntaVO> respuestasAlumno(String PERS_ID, String PREP_CODIGO, String PRIN_CODIGO) throws SQLException {
+
+        ConexionBD con = new ConexionBD();
+        con.ConexionBD();
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT * FROM alumnopregunta WHERE PERS_ID = '");
+        sql.append(PERS_ID);
+        sql.append("' and PREP_CODIGO = '");
+        sql.append(PREP_CODIGO);
+        sql.append("' AND PRIN_CODIGO = '");
+        sql.append(PRIN_CODIGO);
+        sql.append("' ");
+
+        ResultSet rs = con.obtenerDatos(sql.toString());
+        ArrayList<AlumnoPreguntaVO> respuestas = new ArrayList<>();
+        while (rs.next()) {
+            AlumnoPreguntaVO apvo = new AlumnoPreguntaVO(
+                    rs.getString("PERS_ID"),
+                    rs.getString("PRUE_CODIGO"),
+                    rs.getString("PREP_CODIGO"),
+                    rs.getString("ALPR_RESPUESTAS"),
+                    rs.getString("ALPR_PUNTAJE"),
+                    rs.getString("PRIN_CODIGO"));
+            respuestas.add(apvo);
+        }
+        return respuestas;
     }
 }

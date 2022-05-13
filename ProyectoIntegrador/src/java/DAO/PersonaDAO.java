@@ -92,8 +92,8 @@ public class PersonaDAO {
         }
         return PERS_ID;
     }
-    
-     public String obtenerNombre(String PERS_ID) throws SQLException {
+
+    public String obtenerNombre(String PERS_ID) throws SQLException {
         String NOMBRE = "";
 
         String sql = "";
@@ -101,22 +101,105 @@ public class PersonaDAO {
         ConexionBD cn = new ConexionBD();
         cn.ConexionBD();
 
-        sql = "SELECT * FROM PERSONA WHERE PERS_ID ='"+PERS_ID+"'  ";
+        sql = "SELECT * FROM PERSONA WHERE PERS_ID ='" + PERS_ID + "'  ";
         ResultSet rs = cn.obtenerDatos(sql);
 
         while (rs.next()) {
 
-
-                    NOMBRE = rs.getString("PERS_PRINOMBRE")+" "+
-                            rs.getString("PERS_SEGNOMBRE")+" "+
-                            rs.getString("PERS_PRIAPELLIDO")+" "+
-                            rs.getString("PERS_SEGAPELLIDO");
-                }
-
-            
-      return NOMBRE;
+            NOMBRE = rs.getString("PERS_PRINOMBRE") + " "
+                    + rs.getString("PERS_SEGNOMBRE") + " "
+                    + rs.getString("PERS_PRIAPELLIDO") + " "
+                    + rs.getString("PERS_SEGAPELLIDO");
         }
-  
+
+        return NOMBRE;
+    }
+    
+    
+ 
+   
+   
+   
+    public ArrayList<PersonaVO> obetenerEstudiantes(String GRAD_CODIGO) throws SQLException {
+    
+        ArrayList<PersonaVO> persona;
+        StringBuilder sql = new StringBuilder();
+
+        ConexionBD cn = new ConexionBD();
+        cn.ConexionBD();
+        
+        sql.append("  SELECT * FROM persona, alumno WHERE persona.PERS_ID = alumno.PERS_ID and alumno.GRAD_CODIGO = '");
+        sql.append(GRAD_CODIGO);
+        sql.append("'");
+      
+
+        ResultSet rs = cn.obtenerDatos(sql.toString());
+        System.out.println("CONSULTA: " + sql.toString());
+       persona = new ArrayList<>();
+        while (rs.next()) {
+
+            PersonaVO pvo = new PersonaVO(
+                    rs.getString("PERS_ID"),
+                    rs.getString("PERS_NUMDOC"),
+                    rs.getString("PERS_TIPODOC"),
+                    rs.getString("PERS_PRINOMBRE"),
+                    rs.getString("PERS_SEGNOMBRE"),
+                    rs.getString("PERS_PRIAPELLIDO"),
+                    rs.getString("PERS_SEGAPELLIDO"),
+                    rs.getString("PERS_USERNAME"),
+                    rs.getString("PERS_PASSWORD"));
+            persona.add(pvo);
+
+        }
+        return persona;
     }
 
+   
 
+    public ArrayList<PersonaVO> obetenerInfoEstu(String PERS_ID,String GRADO_CODIGO) throws SQLException {
+    
+        ArrayList<PersonaVO> persona;
+        String sql = "";
+
+        ConexionBD cn = new ConexionBD();
+        cn.ConexionBD();
+        
+        if(!PERS_ID.equals("")){
+        
+        sql = "SELECT * FROM PERSONA,ALUMNO,GRADO "
+                + "WHERE persona.PERS_ID = alumno.PERS_ID"
+                + " and grado.GRAD_CODIGO = alumno.GRAD_CODIGO"
+                + " and persona.PERS_ID = '"+PERS_ID+"' ";
+        } else{
+            
+               sql = "SELECT * FROM PERSONA,ALUMNO,GRADO "
+                + "WHERE persona.PERS_ID = alumno.PERS_ID"
+                + " and grado.GRAD_CODIGO = alumno.GRAD_CODIGO"
+                + " and alumno.GRAD_CODIGO = '"+GRADO_CODIGO +"' ";
+    
+    }
+       
+
+        ResultSet rs = cn.obtenerDatos(sql);
+        System.out.println("CONSULTA: " + sql);
+
+       persona = new ArrayList<>();
+        while (rs.next()) {
+
+            PersonaVO pvo = new PersonaVO(
+                    rs.getString("PERS_ID"),
+                    rs.getString("PERS_NUMDOC"),
+                    rs.getString("PERS_TIPODOC"),
+                    rs.getString("PERS_PRINOMBRE"),
+                    rs.getString("PERS_SEGNOMBRE"),
+                    rs.getString("PERS_PRIAPELLIDO"),
+                    rs.getString("PERS_SEGAPELLIDO"),
+                    rs.getString("GRAD_NOMBRE"),
+                    rs.getString("PERS_PASSWORD"));
+            persona.add(pvo);
+
+        }
+        return persona;
+    }
+
+}

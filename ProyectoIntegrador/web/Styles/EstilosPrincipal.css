@@ -550,12 +550,12 @@ li.selected{
 
 .prog_nombre, .prog_grado {
 
-    font-size: 22px;
+    font-size: 18px;
     font-family: RobotoRegular;
     margin-left: 20px;
 }
 .nom_prueba{
-    font-size: 22px;
+    font-size: 18px;
     font-family: RobotoRegular;
     padding: 20px;
 }
@@ -583,7 +583,7 @@ li.selected{
     float: right;
     background-color: #744FA3;
     color: #FFF;
-    width: 180px;
+    width:270px;
     padding: 5px;
     border-radius: 10px;
     font-size: 18px;
@@ -656,6 +656,15 @@ li.selected{
     font-size: 20px;
     font-family: RobotoBold;
     border-radius: 15px;
+}
+
+.prog_prueb{
+    width: auto;
+    height: 530px;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    
 }
 
 .prog_preg{

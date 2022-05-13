@@ -10,11 +10,11 @@ response.sendRedirect("InicioSesion.jsp");
 String PERS_ID = session.getAttribute("sesion").toString();
 
 %>
-
+<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <html>
     <head>
         <title>ASaber - Plataforma Educativa</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="icon" type="image/ico" href="Images/logo.ico"/>
         <link rel="stylesheet" href="Styles/EstilosPrincipal.css"/>
         <link rel="stylesheet" href="Styles/BasicStyles.css"/>

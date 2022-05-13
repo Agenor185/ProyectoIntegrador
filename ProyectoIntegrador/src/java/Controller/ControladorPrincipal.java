@@ -5,11 +5,13 @@ import DAO.AlumnoPreguntaDAO;
 import DAO.DocenteDAO;
 import DAO.LoginDao;
 import DAO.PersonaDAO;
+import DAO.PreguntaPruebaDAO;
 import DAO.PruebaIntentoDAO;
 import VO.AlumnoPreguntaVO;
 import VO.AlumnoVO;
 import VO.DocenteVO;
 import VO.PersonaVO;
+import VO.PreguntaPruebaVO;
 import VO.PruebaIntentoVO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +19,7 @@ import static java.lang.System.out;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,6 +70,184 @@ public class ControladorPrincipal extends HttpServlet {
             modulo = request.getParameter("modulo");
         } else {
             modulo = request.getParameter("modulo");
+        }
+
+        if (modulo.endsWith("obtenerRespuestasEstu")) {
+
+            try {
+              
+                
+                PreguntaPruebaDAO ppdao = new PreguntaPruebaDAO();
+                
+                ArrayList<PreguntaPruebaVO> respuetas = ppdao.obtenerPreguntasEstudiante(
+                        request.getParameter("PREP_CODIGO"),
+                        request.getParameter("PERS_ID"),
+                        request.getParameter("PRIN_CODIGO"));
+                
+                
+                    String[] respuestas = new String[4];
+
+             
+                    int cont = 0;
+
+                    for (PreguntaPruebaVO pregunta : respuetas) {                      
+
+                        int n1, n2, n3, n4 = 0;
+
+                        n1 = (int) (Math.random() * 4);
+                        n2 = (int) (Math.random() * 4);
+                        n3 = (int) (Math.random() * 4);
+                        n4 = (int) (Math.random() * 4);
+
+                        respuestas[0] = pregunta.getPRE_RESPUESTA1();
+                        respuestas[1] = pregunta.getPRE_RESPUESTA2();
+                        respuestas[2] = pregunta.getPRE_RESPUESTA3();
+                        respuestas[3] = pregunta.getPRE_RESPUESTACORRECTA();
+
+                        while (n1 == n2 || n1 == n3 || n1 == n4
+                                || n2 == n3 || n2 == n4
+                                || n3 == n2 || n3 == n4) {
+
+                            n1 = (int) (Math.random() * 4);
+                            n2 = (int) (Math.random() * 4);
+                            n3 = (int) (Math.random() * 4);
+                            n4 = (int) (Math.random() * 4);
+
+                        }
+                        cont++;                        
+             
+
+              String pr ="<div class='num_preg'> Pregunta "+cont+": </div> "
+               + "<div class='titulo_pregunta'>"
+                +"<br><br>"+pregunta.getPREP_PREGUNTA()+"</div>"
+               + "<br>"
+               + "<br>"
+               + "<div class='pregunta_rta'>  "
+                +    "<span> A. &nbsp; </span>  "
+               +     "<label for='r1"+cont+"'> &nbsp;&nbsp;&nbsp; "+respuestas[n1]+" </label>  "            
+                +    "<br><br>"
+                +    "<span> B. &nbsp; </span>  "
+                +    "<label for='r2"+cont+"'>&nbsp;&nbsp;&nbsp;"+respuestas[n2]+" </label><br><br>"
+                +    "<span> C. &nbsp; </span>  "
+                +    "<label for='r3"+cont+"'>&nbsp;&nbsp;&nbsp;"+respuestas[n3]+" </label><br><br>"
+                +    "<span> D. &nbsp; </span>"
+                +    "<label for='r4"+cont+"'> &nbsp;&nbsp;&nbsp;"+respuestas[n4]+" </label> <br><br>"
+               + "</div>"
+               + "<br>";
+              request.setCharacterEncoding("UTF-8");
+              
+              out.println(new String(pr.getBytes("ISO-8859-1"),"UTF-8"));
+
+               
+
+                    }              
+                
+                
+               
+                
+             
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+
+        }
+
+        if (modulo.equals("cargarIntentos")) {
+
+            System.out.println("CARGAR INTENTOS");
+
+            PruebaIntentoDAO pidao = new PruebaIntentoDAO();
+
+            try {
+                ArrayList<PruebaIntentoVO> intentos = pidao.obtenerIntentos(
+                        request.getParameter("PERS_ID"),
+                        request.getParameter("PRUE_CODIGO"));
+
+                for (PruebaIntentoVO intento : intentos) {
+
+                    out.println("  <div class='inten_prueba' onclick=abrirModalProg('"+ intento.getPERS_ID() + "','" + intento.getPRUE_CODIGO() + "','" + intento.getPRIN_CODIGO() + "') >"
+                            + "<div class='int_txt'> Intento: " + intento.getPRIN_INTENTO() + " </div>"
+                            + " <div class='int_fecha'> Fecha: " + intento.getPRIN_FECHA() + "</div>"
+                            + "</div>");
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        if (modulo.equals("infoEstudiante")) {
+            PersonaDAO pedao = new PersonaDAO();
+            String PERS_ID = request.getParameter("PERS_ID");
+            String GRADO_CODIGO = request.getParameter("GRADO_CODIGO");
+
+            ArrayList<PersonaVO> persona;
+            try {
+                persona = pedao.obetenerInfoEstu(PERS_ID, GRADO_CODIGO);
+
+                sesion.setAttribute("infoEstu", persona);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            out.println("Informacion encontrada");
+        }
+
+        if (modulo.equals("buscarEstudiante")) {
+
+            String PERS_ID = request.getParameter("PERS_ID");
+            String GRADO_CODIGO = request.getParameter("GRADO_CODIGO");
+
+            PersonaDAO pedao = new PersonaDAO();
+
+            try {
+
+                ArrayList<PersonaVO> persona = pedao.obetenerInfoEstu(PERS_ID, GRADO_CODIGO);
+
+                for (PersonaVO personaVO : persona) {
+
+                    out.println(" <tr><td data-label='Nombre'>" + personaVO.getPERS_PRINOMBRE() + " "
+                            + personaVO.getPERS_SEGNOMBRE() + " "
+                            + personaVO.getPERS_PRIAPELLIDO() + " "
+                            + personaVO.getPERS_SEGAPELLIDO() + "</td> "
+                            + "   <td data-label='Documento_Identidad'>" + personaVO.getPERS_NUMDOC() + "</td>"
+                            + "  <td data-label='Grado'>" + personaVO.getPERS_USERNAME() + "</td> "
+                            + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='cargarResultados(this.id)' src='Styles/Icons/see.png'/></td> </tr>");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        if (modulo.equals("cargarEstudiantes")) {
+
+            PersonaDAO pedao = new PersonaDAO();
+
+            try {
+
+                ArrayList<PersonaVO> estudiantes = pedao.obetenerEstudiantes(request.getParameter("GRAD_CODIGO"));
+
+                out.println(" <option selected disabled> Estudiante </option>");
+                for (PersonaVO estudiante : estudiantes) {
+
+                    out.println(" <option value='" + estudiante.getPERS_ID() + "'>"
+                            + estudiante.getPERS_PRINOMBRE() + " "
+                            + estudiante.getPERS_SEGNOMBRE() + " "
+                            + estudiante.getPERS_PRIAPELLIDO() + " "
+                            + estudiante.getPERS_SEGAPELLIDO() + "</option>");
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
         if (modulo.equals("prueba")) {
@@ -144,7 +325,7 @@ public class ControladorPrincipal extends HttpServlet {
                     sumaPuntaje = sumaPuntaje + Integer.parseInt(puntaje[i]);
 
                 }
-                
+
                 out.println(sumaPuntaje);
 
             } catch (SQLException ex) {

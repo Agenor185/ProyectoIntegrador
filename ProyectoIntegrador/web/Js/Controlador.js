@@ -34,9 +34,7 @@ function cargarPagPerfil() {
 function verResultados() {
     $(".div_container").load('Resultados/BuscarEstudiante.jsp');
 }
-function cargarResultados() {
-    $(".div_container").load('Resultados/ProgresoEstudiantes.jsp');
-}
+
 
 /* FUNCIONES REGISTRO USUARIO*/
 
@@ -219,11 +217,50 @@ function salirPrueba() {
 
 }
 
+/*FUNCIONES BUSQUEDA ESTUDIANTES*/
+
+function obtenerEstudiantes(GRAD_CODIGO){
+  
+        $.post("ControladorPrincipal", {GRAD_CODIGO: GRAD_CODIGO, modulo: "cargarEstudiantes"}, function(r) {
+            $("#estudiantes").html(r);
+        });
+    }
+    
+    
+function obtenerInfoEstu(PERS_ID,GRADO_CODIGO){
+  
+        $.post("ControladorPrincipal", {PERS_ID: PERS_ID, GRADO_CODIGO: GRADO_CODIGO, modulo: "buscarEstudiante"}, function(r) {
+            $("#rows_est").html(r);
+        });
+    }
+    
+    function cargarResultados(PERS_ID) {
+        
+        $.post("ControladorPrincipal", {PERS_ID: PERS_ID, modulo: "infoEstudiante"}, function(r) {
+      
+           $(".div_container").load('Resultados/ProgresoEstudiantes.jsp');
+        });
+   
+}
+
 /* FUNCIONES PROGRESO ESTUDIANTES **/
 
-function abrirModalProg(){    
+function abrirModalProg(PERS_ID,PREP_CODIGO, PRIN_CODIGO){    
+ 
+      $.post("ControladorPrincipal", {PERS_ID: PERS_ID, PREP_CODIGO: PREP_CODIGO, PRIN_CODIGO:PRIN_CODIGO, modulo: "obtenerRespuestasEstu"}, function(r) {
+            $(".prueba_preg").html(r);
     $(".modal_fondo").fadeIn("fast");
-      $(".div_modal").fadeIn("fast");
+    $(".div_modal").fadeIn("fast");
+        }); 
+}
+
+function  cargarIntentos(PERS_ID, PRUE_CODIGO){
+    alert("ENTRO");
+    $.post("ControladorPrincipal", {PERS_ID: PERS_ID, PRUE_CODIGO: PRUE_CODIGO, modulo: "cargarIntentos"}, function(r) {
+      $(".cont_Intenttos").html(r);
+       
+        });
+    
     
 }
 
