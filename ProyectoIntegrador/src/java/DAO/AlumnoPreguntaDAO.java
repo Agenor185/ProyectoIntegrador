@@ -20,7 +20,8 @@ public class AlumnoPreguntaDAO {
                 + "PRUE_CODIGO,"
                 + "ALPR_RESPUESTA,"
                 + "ALPR_PUNTAJE,"
-                + "PRIN_CODIGO ) "
+                + "PRIN_CODIGO,"
+                + "ALPR_POCISIONRESP ) "
                 + "values ('");
 
         sql.append(apvo.getPERS_ID());
@@ -34,6 +35,8 @@ public class AlumnoPreguntaDAO {
         sql.append(apvo.getALPR_PUNTAJE());
         sql.append("','");
         sql.append(apvo.getPRIN_CODIGO());
+        sql.append("','");
+        sql.append(apvo.getALPR_POCISIONRESP());
         sql.append("')");
 
         System.out.println("CONSULAT:" + sql.toString());
@@ -68,7 +71,8 @@ public class AlumnoPreguntaDAO {
                     rs.getString("PREP_CODIGO"),
                     rs.getString("ALPR_RESPUESTAS"),
                     rs.getString("ALPR_PUNTAJE"),
-                    rs.getString("PRIN_CODIGO"));
+                    rs.getString("PRIN_CODIGO"),
+                    rs.getString("ALPR_POCISIONRESP"));
             respuestas.add(apvo);
         }
         return respuestas;

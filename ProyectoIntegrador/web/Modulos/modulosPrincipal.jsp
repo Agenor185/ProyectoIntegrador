@@ -144,6 +144,6 @@
         <div class="modal_link">
              <br>
             Fuente: <a href=" https://www.icfes.gov.co/documents/39286/2171114/Gu%C3%ADa+de+orientaci%C3%B3n+Saber+11.%C2%B0+2020-1.pdf" > Icfes Saber 11 Guia</a></div>
-        <button type="button" onclick="abrirPrueba()" class="bttn_prueba">Iniciar Prueba</button>
+        <button type="button" onclick="abrirPrueba(this.id)" class="bttn_prueba">Iniciar Prueba</button>
     </div>
 </div>

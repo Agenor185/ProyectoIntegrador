@@ -10,25 +10,29 @@ response.sendRedirect("InicioSesion.jsp");
 String PERS_ID = session.getAttribute("sesion").toString();
 
 %>
-<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>ASaber - Plataforma Educativa</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        
         <link rel="icon" type="image/ico" href="Images/logo.ico"/>
         <link rel="stylesheet" href="Styles/EstilosPrincipal.css"/>
         <link rel="stylesheet" href="Styles/BasicStyles.css"/>
-        <script type="text/javascript" src="Js/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="Js/Controlador.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="Js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="Js/Controlador.js"></script>
         <script type="text/javascript" src="Js/jqueryForms.js"></script>
-        <script type="text/javascript" src="Js/alerts.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="Js/alerts.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="div_container">
-
+     
+        <div class="div_container" >
+            <img src="Images/logo.png" style="width: 620px; height: 620px; opacity: .3; margin-left: 300px;" alt="alt"/>
         </div>
         <div class="div_topBar">
+            <img src="Images/logoTxt.png" style="width: 172px; height: 40px; margin-top: 8px;" alt="alt"/>
+            
             <div class="icon_session">
                 <img title="Cerrar Sesion" id="cerrarsesion" onclick="cerrarSesion(this.id)" src="Styles/Icons/close_session.png" />
             
@@ -61,26 +65,26 @@ String PERS_ID = session.getAttribute("sesion").toString();
                            if(adao.verificarAlumno(PERS_ID)){                    
                     %>
                     
-                    <li>Inicio</li>
-                    <li id="li_mod" onclick="cargarPagModulo()">Modulos</li>      
+                    <li id ="li_home" class="selected" onclick="cargarInicio(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/home.png" alt="alt"/>&nbsp;&nbsp; Inicio</li>
+                    <li id="li_mod" onclick="cargarPagModulo(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/module.png" alt="alt"/>&nbsp;&nbsp; Modulos</li>      
                     
                     <% } else { %>
                     
                     
-                    <li>Inicio</li>
-                    <li id="li_mod" onclick="cargarPagModulo()">Modulos</li> 
-                      <li id="li_reg" onclick="verResultados(this.id)">Resultados</li>
-                    <li id="li_reg" onclick="verMenuRegistro(this.id)">Registar Usuarios</li>
+                    <li id ="li_home" class="selected" onclick="cargarInicio(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/home.png" alt="alt"/>&nbsp;&nbsp; Inicio</li>
+                    <li id="li_mod" onclick="cargarPagModulo(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/module.png" alt="alt"/>&nbsp;&nbsp; Modulos</li> 
+                    <li id="li_res" onclick="verResultados(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/result.png" alt="alt"/>&nbsp;&nbsp;Resultados</li>
+                    <li id="li_reg" onclick="verMenuRegistro(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/form.png" alt="alt"/>&nbsp;&nbsp;Registar Usuarios</li>
                     <ul class="ul_regMenu" hidden>
-                        <li id="alumno" onclick="cargarPagina(this.id)"> Alumno</li>
-                        <li id="docente" onclick="cargarPagina(this.id)">Docente</li>
+                        <li id="alumno" onclick="cargarForms(this.id)"> Alumno</li>
+                        <li id="docente" onclick="cargarForms(this.id)">Docente</li>
                     </ul>
                     
                     <% }%>
                 </ul>
             </div>
         </div>
-
+     
 
     </body>
 

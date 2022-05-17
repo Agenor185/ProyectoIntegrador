@@ -8,15 +8,27 @@ public class AlumnoPreguntaVO {
     String ALPR_RESPUESTA;
     String ALPR_PUNTAJE;
     String PRIN_CODIGO;
+    String ALPR_POCISIONRESP;
 
-    public AlumnoPreguntaVO(String PERS_ID, String PRUE_CODIGO,  String PREP_CODIGO,String ALPR_RESPUESTA, String ALPR_PUNTAJE, String PRIN_CODIGO) {
+    public AlumnoPreguntaVO(String PERS_ID, String PRUE_CODIGO,  String PREP_CODIGO,String ALPR_RESPUESTA, String ALPR_PUNTAJE, String PRIN_CODIGO,String ALPR_POCISIONRESP) {
         this.PERS_ID = PERS_ID;
         this.PREP_CODIGO = PREP_CODIGO;
         this.PRUE_CODIGO = PRUE_CODIGO;
         this.ALPR_RESPUESTA = ALPR_RESPUESTA;
         this.ALPR_PUNTAJE = ALPR_PUNTAJE;
         this.PRIN_CODIGO = PRIN_CODIGO;
+        this.ALPR_POCISIONRESP = ALPR_POCISIONRESP;
     }
+
+    public String getALPR_POCISIONRESP() {
+        return ALPR_POCISIONRESP;
+    }
+
+    public void setALPR_POCISIONRESP(String ALPR_POCISIONRESP) {
+        this.ALPR_POCISIONRESP = ALPR_POCISIONRESP;
+    }
+    
+    
 
     public String getPERS_ID() {
         return PERS_ID;

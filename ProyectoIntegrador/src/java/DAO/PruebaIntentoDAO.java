@@ -49,16 +49,19 @@ public class PruebaIntentoDAO {
         return PRIN_CODIGO;
     }
 
-    public String ultimoIntento(String PERS_ID) throws SQLException {
+    public String ultimoIntento(String PERS_ID, String PRUE_CODIGO) throws SQLException {
         ConexionBD con = new ConexionBD();
         con.ConexionBD();
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT * FROM pruebaintento where PERS_ID = '");
         sql.append(PERS_ID);
-        sql.append("'order by PRIN_FECHA asc");
+        sql.append("' AND PRUE_CODIGO = '");
+        sql.append(PRUE_CODIGO);
+        sql.append("' order by PRIN_FECHA asc");
         String PRIN_INTENTO = null;
 
         ResultSet rs = con.obtenerDatos(sql.toString());
+        System.out.println("INTENTOS: "+sql.toString());
         try {
             while (rs.next()) {
                 PRIN_INTENTO = rs.getString("PRIN_INTENTO");

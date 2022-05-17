@@ -8,6 +8,9 @@
 <%@page import="DAO.PruebaDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="VO.PersonaVO"%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
 
     ArrayList<PersonaVO> estudiante = (ArrayList<PersonaVO>) session.getAttribute("infoEstu");
@@ -15,7 +18,11 @@
     request.setCharacterEncoding("UTF-8");
 %>
 
-<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
+<html>
+    <head>
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    </head>
+
 
 <div class="div_progreso">
     <div class="banner_prog">
@@ -74,20 +81,12 @@
 <div class="modal_fondo">
     <div class="div_modal div_modal_prog"> 
         <div class="modal_closeBttn" onclick="cerrarModalMod()"><img src="Images/close_bttn.png" alt="alt"/></div>
-        <div class="prog_result"> Puntaje: 50/100 </div>
+       
         <div class="prog_prueb"> 
             
             
-            <div class="cont_preguntas">
+            <div class="cont_preguntas" >
 
-        <form action="ControladorPrincipal" id="prueba">
-            <div class="prueba_preg" > 
-
-             
-               
-            </div>
-            
-        </form>
 
 
     </div>
@@ -106,12 +105,12 @@
             <br>
 
             <div class="titulo_pregunta prog_tpreg"> 
-                En un municipio de Colombia, el alcalde desea restringir el tr·nsito de menores
-                de edad por las vÌas p˙blicas despuÈs de las 12 de la noche, pues afirma que las
-                condiciones de seguridad en general no son las m·s adecuadas para que los menores 
-                estÈn a esa hora en la calle y que, adem·s, es una forma de responsabilizar m·s a 
+                En un municipio de Colombia, el alcalde desea restringir el tr√°nsito de menores
+                de edad por las v√≠as p√∫blicas despu√©s de las 12 de la noche, pues afirma que las
+                condiciones de seguridad en general no son las m√°s adecuadas para que los menores 
+                est√©n a esa hora en la calle y que, adem√°s, es una forma de responsabilizar m√°s a 
                 los padres de familia de la conducta de sus hijos, para ello dice que quiere convocar 
-                al pueblo para que apoye o rechace su decisiÛn por medio de un plebiscito. 
+                al pueblo para que apoye o rechace su decisi√≥n por medio de un plebiscito. 
                 <br>
                 <br>
                 La propuesta del alcalde NO es viable porque
@@ -136,3 +135,4 @@
     </div>
 
 </div>
+</html>

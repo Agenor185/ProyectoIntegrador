@@ -8,13 +8,15 @@ import java.util.ArrayList;
 
 public class PreguntaPruebaDAO {
 
-    public ArrayList<PreguntaPruebaVO> obtenerPreguntas() throws SQLException {
+    public ArrayList<PreguntaPruebaVO> obtenerPreguntas(String PRUE_CODIGO) throws SQLException {
         ArrayList<PreguntaPruebaVO> preguntas;
         ConexionBD con = new ConexionBD();
         con.ConexionBD();
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT * FROM preguntaprueba WHERE PRUE_CODIGO = 'PR02' ");
+        sql.append("SELECT * FROM preguntaprueba WHERE PRUE_CODIGO = '");
+        sql.append(PRUE_CODIGO);
+        sql.append("'");
 
         ResultSet rs = con.obtenerDatos(sql.toString());
         preguntas = new ArrayList<>();
@@ -61,8 +63,8 @@ public class PreguntaPruebaDAO {
         while (rs.next()) {
 
             PreguntaPruebaVO ppvo = new PreguntaPruebaVO(
-                    rs.getString("alumnopregunta.ALPR_RESPUESTA"),
-                    rs.getString("preguntaprueba.PREP_CODIGO"),
+                    rs.getString("alumnopregunta.ALPR_RESPUESTA")+"_"+rs.getString("PRUE_CODIGO"),
+                    rs.getString("alumnopregunta.ALPR_POCISIONRESP"),
                     rs.getString("preguntaprueba.PREP_PREGUNTA"),
                     Integer.parseInt(rs.getString("alumnopregunta.ALPR_PUNTAJE")),
                     rs.getString("preguntaprueba.PREP_RESPUESTA1"),

@@ -22,7 +22,7 @@
           </select>    
     
      
-        <button type="button" onclick="obtenerInfoEstu($('#estudiantes').val(),$('#grados').val())" style="float: none;" >Buscar</button>
+        <button type="button" onclick="obtenerInfoEstu($('#estudiantes').val(),$('#grados').val())" style="float: none;" >Buscar &nbsp;<img style="width: 20px; height: 20px;" src="Styles/Icons/search.png" alt="alt"/></button>
 
              </div>
         

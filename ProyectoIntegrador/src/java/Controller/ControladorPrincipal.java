@@ -36,7 +36,9 @@ public class ControladorPrincipal extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");       
+        request.setCharacterEncoding("UTF-8"); 
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -60,6 +62,7 @@ public class ControladorPrincipal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         request.setCharacterEncoding("UTF-8"); 
         PrintWriter out = response.getWriter();
         System.out.println("ENTROO AL CONTROLADOR");
 
@@ -71,85 +74,42 @@ public class ControladorPrincipal extends HttpServlet {
         } else {
             modulo = request.getParameter("modulo");
         }
+        
+        if(modulo.equals("obtenerPreguntas")){
+             sesion.setAttribute("preguntas",null);
+             PreguntaPruebaDAO ppdao = new PreguntaPruebaDAO();
+                 
+             try {
+                 
+                 ArrayList<PreguntaPruebaVO> preguntas = ppdao.obtenerPreguntas(request.getParameter("PRUE_CODIGO"));
+                 sesion.setAttribute("preguntas", preguntas);
+                 
+             } catch (SQLException ex) {
+                 Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+             }
+                  
+        
+            
+        }
 
         if (modulo.endsWith("obtenerRespuestasEstu")) {
-
-            try {
-              
-                
+                sesion.setAttribute("revisionEstu",null);
+                 
                 PreguntaPruebaDAO ppdao = new PreguntaPruebaDAO();
-                
-                ArrayList<PreguntaPruebaVO> respuetas = ppdao.obtenerPreguntasEstudiante(
-                        request.getParameter("PREP_CODIGO"),
-                        request.getParameter("PERS_ID"),
-                        request.getParameter("PRIN_CODIGO"));
-                
-                
-                    String[] respuestas = new String[4];
 
-             
-                    int cont = 0;
-
-                    for (PreguntaPruebaVO pregunta : respuetas) {                      
-
-                        int n1, n2, n3, n4 = 0;
-
-                        n1 = (int) (Math.random() * 4);
-                        n2 = (int) (Math.random() * 4);
-                        n3 = (int) (Math.random() * 4);
-                        n4 = (int) (Math.random() * 4);
-
-                        respuestas[0] = pregunta.getPRE_RESPUESTA1();
-                        respuestas[1] = pregunta.getPRE_RESPUESTA2();
-                        respuestas[2] = pregunta.getPRE_RESPUESTA3();
-                        respuestas[3] = pregunta.getPRE_RESPUESTACORRECTA();
-
-                        while (n1 == n2 || n1 == n3 || n1 == n4
-                                || n2 == n3 || n2 == n4
-                                || n3 == n2 || n3 == n4) {
-
-                            n1 = (int) (Math.random() * 4);
-                            n2 = (int) (Math.random() * 4);
-                            n3 = (int) (Math.random() * 4);
-                            n4 = (int) (Math.random() * 4);
-
-                        }
-                        cont++;                        
-             
-
-              String pr ="<div class='num_preg'> Pregunta "+cont+": </div> "
-               + "<div class='titulo_pregunta'>"
-                +"<br><br>"+pregunta.getPREP_PREGUNTA()+"</div>"
-               + "<br>"
-               + "<br>"
-               + "<div class='pregunta_rta'>  "
-                +    "<span> A. &nbsp; </span>  "
-               +     "<label for='r1"+cont+"'> &nbsp;&nbsp;&nbsp; "+respuestas[n1]+" </label>  "            
-                +    "<br><br>"
-                +    "<span> B. &nbsp; </span>  "
-                +    "<label for='r2"+cont+"'>&nbsp;&nbsp;&nbsp;"+respuestas[n2]+" </label><br><br>"
-                +    "<span> C. &nbsp; </span>  "
-                +    "<label for='r3"+cont+"'>&nbsp;&nbsp;&nbsp;"+respuestas[n3]+" </label><br><br>"
-                +    "<span> D. &nbsp; </span>"
-                +    "<label for='r4"+cont+"'> &nbsp;&nbsp;&nbsp;"+respuestas[n4]+" </label> <br><br>"
-               + "</div>"
-               + "<br>";
-              request.setCharacterEncoding("UTF-8");
-              
-              out.println(new String(pr.getBytes("ISO-8859-1"),"UTF-8"));
-
-               
-
-                    }              
-                
-                
-               
-                
-             
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+             try {
+                 ArrayList<PreguntaPruebaVO> respuetas = ppdao.obtenerPreguntasEstudiante(
+                         request.getParameter("PREP_CODIGO"),
+                         request.getParameter("PERS_ID"),
+                         request.getParameter("PRIN_CODIGO"));
+                 
+                 sesion.setAttribute("revisionEstu",respuetas);
+                 
+                 
+           
+             } catch (SQLException ex) {
+                 Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+             }
 
         }
 
@@ -166,7 +126,7 @@ public class ControladorPrincipal extends HttpServlet {
 
                 for (PruebaIntentoVO intento : intentos) {
 
-                    out.println("  <div class='inten_prueba' onclick=abrirModalProg('"+ intento.getPERS_ID() + "','" + intento.getPRUE_CODIGO() + "','" + intento.getPRIN_CODIGO() + "') >"
+                    out.println("  <div class='inten_prueba' onclick=abrirModalProg('" + intento.getPERS_ID() + "','" + intento.getPRUE_CODIGO() + "','" + intento.getPRIN_CODIGO() + "') >"
                             + "<div class='int_txt'> Intento: " + intento.getPRIN_INTENTO() + " </div>"
                             + " <div class='int_fecha'> Fecha: " + intento.getPRIN_FECHA() + "</div>"
                             + "</div>");
@@ -295,9 +255,9 @@ public class ControladorPrincipal extends HttpServlet {
 
                 }
 
-                if (pidao.ultimoIntento(sesion.getAttribute("sesion").toString()) != null) {
-                    PRIN_INTENTO = Integer.parseInt(pidao.ultimoIntento(sesion.getAttribute("sesion").toString())) + 1;
-
+                if (pidao.ultimoIntento(sesion.getAttribute("sesion").toString(),request.getParameter("pruebaCode")) != null) {
+                    PRIN_INTENTO = (Integer.parseInt(pidao.ultimoIntento(sesion.getAttribute("sesion").toString(),request.getParameter("pruebaCode") )) + 1);
+                    System.out.println("NUMERO DE INTENTO: "+ PRIN_INTENTO);
                 }
 
                 if (pidao.nuevoIntento(new PruebaIntentoVO(
@@ -315,7 +275,8 @@ public class ControladorPrincipal extends HttpServlet {
                                 request.getParameter("pruebaCode"),
                                 respuestas[i],
                                 puntaje[i],
-                                PRIN_CODIGO));
+                                PRIN_CODIGO,
+                                request.getParameter("nvalor_" + preguntas[i])));
                     }
 
                 }
@@ -426,6 +387,9 @@ public class ControladorPrincipal extends HttpServlet {
                     }
 
                 }
+                
+                out.println("<div>Nombre de Usuario: "+userName.toLowerCase().replace(" ", "")
+                        +"<br></div>Contraseña:  "+password+"<div></div>");
 
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
