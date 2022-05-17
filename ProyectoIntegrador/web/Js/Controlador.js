@@ -1,56 +1,61 @@
 /* FUNCIONES PAGINA PRINCIPAL */
-    
-    
-  function cargarForms(id){  
+
+
+function cargarForms(id) {
     if (id === "alumno") {
-       
-        $(".div_formUser").css("display","flex");
+
+        $(".div_formUser").css("display", "flex");
         $(".div_formUser2").hide();
 
     }
     if (id === "docente") {
-     
-         $(".div_formUser2").css("display","flex");
-          $(".div_formUser").hide();
+
+        $(".div_formUser2").css("display", "flex");
+        $(".div_formUser").hide();
     }
 
 }
 
-function verMenuRegistro(id) {   
+function verMenuRegistro(id) {
     $(".div_container").load('Registros/RegistroUsuario.jsp');
-  $(".ul_menu li").removeClass('selected');
-        $(".ul_regMenu").show("fast");
-        $("#" + id).addClass('selected');
-   
+    $(".ul_menu li").removeClass('selected');
+    $(".ul_regMenu").show("fast");
+    $("#" + id).addClass('selected');
+
 }
 
 function cargarPagModulo(id) {
-     $(".ul_menu li").removeClass('selected');
-      $(".ul_regMenu").hide("fast");
-      $("#" + id).addClass('selected');
+    $(".ul_menu li").removeClass('selected');
+    $(".ul_regMenu").hide("fast");
+    $("#" + id).addClass('selected');
     $(".div_container").load('Modulos/modulosPrincipal.jsp');
 }
 
-function cargarInicio(id){
-         $(".ul_menu li").removeClass('selected');
-      $(".ul_regMenu").hide("fast");
-      $("#" + id).addClass('selected');
-    
+function cargarInicio(id) {
+    $(".ul_menu li").removeClass('selected');
+    $(".ul_regMenu").hide("fast");
+    $("#" + id).addClass('selected');
+
 }
 
 function cargarPagPerfil() {
-    
-    
+
     $(".div_container").load('Perfiles/PerfilUsuario.jsp');
 }
 
-function verResultados(id) {  
-     $(".ul_menu li").removeClass('selected');
-      $(".ul_regMenu").hide("fast");
-     $("#" + id).addClass('selected');
-        $(".div_container").load('Resultados/BuscarEstudiante.jsp');
-        
-   
+function cargarBusquedUsuarios(id) {
+    $(".ul_menu li").removeClass('selected');
+    $("#" + id).addClass('selected');
+    $(".div_container").load('Registros/BuscarUsuario.jsp');
+}
+
+function verResultados(id) {
+    $(".ul_menu li").removeClass('selected');
+    $(".ul_regMenu").hide("fast");
+    $("#" + id).addClass('selected');
+    $(".div_container").load('Resultados/BuscarEstudiante.jsp');
+
+
 }
 
 
@@ -67,9 +72,9 @@ function nuevaUsuario() {
         data: $("#form_persona").serialize(),
         success: function (data) {
             alertSucsses("¡Registro Exitoso!");
-             $(".modal_fondo").show("fast");
-             $(".div_modal").show("fast");    
-               $(".div_modal").html(data); 
+            $(".modal_fondo").show("fast");
+            $(".div_modal").show("fast");
+            $(".div_modal").html(data);
             $("#form_persona")[0].reset();
 
         }
@@ -130,7 +135,7 @@ function moduloInfo(id) {
         $(".modal_mmath").fadeIn("slow");
         $(".modal_img").html(" <img src='Images/math_img.png' alt='alt'/>");
         $(".bttn_prueba").attr('id', 'PR01');
-      
+
     }
 
     if (id === "esp") {
@@ -143,22 +148,22 @@ function moduloInfo(id) {
     if (id === "ing") {
         $(".modal_titulo").text("Prueba de Ingles");
         $(".modal_ingl").fadeIn("slow");
-          $(".modal_img").html(" <img style='height: 300px; width: 350px;' src='Images/ing_img.png' alt='alt'/>");
-          $(".bttn_prueba").attr('id', 'PR04');
+        $(".modal_img").html(" <img style='height: 300px; width: 350px;' src='Images/ing_img.png' alt='alt'/>");
+        $(".bttn_prueba").attr('id', 'PR04');
     }
 
     if (id === "syc") {
         $(".modal_titulo").text("Prueba de Ciencias Sociales y Ciudadania");
         $(".modal_ciud").fadeIn("slow");
-              $(".modal_img").html(" <img style='height: 300px; width: 350px;' src='Images/soc_img.png' alt='alt'/>");
-              $(".bttn_prueba").attr('id', 'PR02');
+        $(".modal_img").html(" <img style='height: 300px; width: 350px;' src='Images/soc_img.png' alt='alt'/>");
+        $(".bttn_prueba").attr('id', 'PR02');
     }
 
     if (id === "cna") {
         $(".modal_titulo").text("Prueba de Ciencias Naturales");
         $(".modal_cna").fadeIn("slow");
-         $(".modal_img").html(" <img style='height: 350px; width: 350px;' src='Images/cna_img.png' alt='alt'/>");
-         $(".bttn_prueba").attr('id', 'PR03');
+        $(".modal_img").html(" <img style='height: 350px; width: 350px;' src='Images/cna_img.png' alt='alt'/>");
+        $(".bttn_prueba").attr('id', 'PR03');
     }
 
 
@@ -180,13 +185,13 @@ function cerrarModalMod() {
 
 /* PRUEBAS */
 function  abrirPrueba(PRUE_CODIGO) {
-    
-        $.post("ControladorPrincipal", {PRUE_CODIGO: PRUE_CODIGO, modulo: "obtenerPreguntas"}, function(r) {
-            $(".div_container").load('Pruebas/PruebaCiudadania.jsp');
-        });
-    }
-    
-   
+
+    $.post("ControladorPrincipal", {PRUE_CODIGO: PRUE_CODIGO, modulo: "obtenerPreguntas"}, function (r) {
+        $(".div_container").load('Pruebas/PruebaCiudadania.jsp');
+    });
+}
+
+
 
 
 
@@ -208,7 +213,7 @@ function obtenerPrueaba() {
             }
         });
     } else {
-           alertError("Faltan preguntas por responder");
+        alertError("Faltan preguntas por responder");
     }
 
 }
@@ -218,19 +223,19 @@ function revisarPrueba() {
     $(".div_modal").fadeOut("fast");
     $("#send_prue").hide();
 
-    $("input[type='radio']").prop('disabled',true);
-        
-    
+    $("input[type='radio']").prop('disabled', true);
+
+
     $("input[type='radio']:checked").each(function () {
         var idVal = $(this).attr("id");
-      
-        if($(this).attr("value") === '3'){
- 
-        $("label[for='" + idVal + "']").addClass("resp_corr");
-    } else {
+
+        if ($(this).attr("value") === '3') {
+
+            $("label[for='" + idVal + "']").addClass("resp_corr");
+        } else {
             $("label[for='" + idVal + "']").addClass("resp_incor");
-        
-    }
+
+        }
     });
 
     /* for (var i = 0; i < 20; i++) {
@@ -252,49 +257,60 @@ function salirPrueba() {
 
 /*FUNCIONES BUSQUEDA ESTUDIANTES*/
 
-function obtenerEstudiantes(GRAD_CODIGO){
-  
-        $.post("ControladorPrincipal", {GRAD_CODIGO: GRAD_CODIGO, modulo: "cargarEstudiantes"}, function(r) {
-            $("#estudiantes").html(r);
-        });
-    }
-    
-    
-function obtenerInfoEstu(PERS_ID,GRADO_CODIGO){
-  
-        $.post("ControladorPrincipal", {PERS_ID: PERS_ID, GRADO_CODIGO: GRADO_CODIGO, modulo: "buscarEstudiante"}, function(r) {
-            $("#rows_est").html(r);
-        });
-    }
-    
-    function cargarResultados(PERS_ID) {
-        
-        $.post("ControladorPrincipal", {PERS_ID: PERS_ID, modulo: "infoEstudiante"}, function(r) {
-      
-           $(".div_container").load('Resultados/ProgresoEstudiantes.jsp');
-        });
-   
+function obtenerEstudiantes(GRAD_CODIGO) {
+
+    $.post("ControladorPrincipal", {GRAD_CODIGO: GRAD_CODIGO, modulo: "cargarEstudiantes"}, function (r) {
+        $("#estudiantes").html(r);
+    });
+}
+
+
+function obtenerInfoEstu(PERS_ID, GRADO_CODIGO) {
+
+    $.post("ControladorPrincipal", {PERS_ID: PERS_ID, GRADO_CODIGO: GRADO_CODIGO, modulo: "buscarEstudiante"}, function (r) {
+        $("#rows_est").html(r);
+    });
+}
+
+function cargarResultados(PERS_ID) {
+
+    $.post("ControladorPrincipal", {PERS_ID: PERS_ID, modulo: "infoEstudiante"}, function (r) {
+
+        $(".div_container").load('Resultados/ProgresoEstudiantes.jsp');
+    });
+
 }
 
 /* FUNCIONES PROGRESO ESTUDIANTES **/
 
-function abrirModalProg(PERS_ID,PREP_CODIGO, PRIN_CODIGO){    
- 
-     $.post("ControladorPrincipal", {PERS_ID: PERS_ID, PREP_CODIGO: PREP_CODIGO, PRIN_CODIGO:PRIN_CODIGO, modulo: "obtenerRespuestasEstu"}, function(r) {
-    $(".modal_fondo").fadeIn("fast");
-    $(".div_modal").fadeIn("fast");
-    $(".cont_preguntas").load("Resultados/revisionResultados.jsp");
-  
-        }); 
+function abrirModalProg(PERS_ID, PREP_CODIGO, PRIN_CODIGO) {
+
+    $.post("ControladorPrincipal", {PERS_ID: PERS_ID, PREP_CODIGO: PREP_CODIGO, PRIN_CODIGO: PRIN_CODIGO, modulo: "obtenerRespuestasEstu"}, function (r) {
+        $(".modal_fondo").fadeIn("fast");
+        $(".div_modal").fadeIn("fast");
+        $(".cont_preguntas").load("Resultados/revisionResultados.jsp");
+
+    });
 }
 
-function  cargarIntentos(PERS_ID, PRUE_CODIGO){
+function  cargarIntentos(PERS_ID, PRUE_CODIGO) {
 
-    $.post("ControladorPrincipal", {PERS_ID: PERS_ID, PRUE_CODIGO: PRUE_CODIGO, modulo: "cargarIntentos"}, function(r) {
-      $(".cont_Intenttos").html(r);
-       
-        });
+    $.post("ControladorPrincipal", {PERS_ID: PERS_ID, PRUE_CODIGO: PRUE_CODIGO, modulo: "cargarIntentos"}, function (r) {
+        $(".cont_Intenttos").html(r);
+
+    });
+}
+
+function volverBusquedaEst(){
     
-    
+     $(".div_container").load('Resultados/BuscarEstudiante.jsp');
+}
+
+/*FUNCIONES BUSQUEDA USUARIOS */
+
+function estudiante(est) {
+    if (est === '2') {
+        $("#grados").fadeIn("fast");
+    }
 }
 

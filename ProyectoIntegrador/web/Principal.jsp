@@ -74,7 +74,8 @@ String PERS_ID = session.getAttribute("sesion").toString();
                     <li id ="li_home" class="selected" onclick="cargarInicio(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/home.png" alt="alt"/>&nbsp;&nbsp; Inicio</li>
                     <li id="li_mod" onclick="cargarPagModulo(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/module.png" alt="alt"/>&nbsp;&nbsp; Modulos</li> 
                     <li id="li_res" onclick="verResultados(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/result.png" alt="alt"/>&nbsp;&nbsp;Resultados</li>
-                    <li id="li_reg" onclick="verMenuRegistro(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/form.png" alt="alt"/>&nbsp;&nbsp;Registar Usuarios</li>
+                    <li id="li_reg" onclick="verMenuRegistro(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/form.png" alt="alt"/>&nbsp;&nbsp;Registrar Usuarios</li>
+                    <li id="li_bus" onclick="cargarBusquedUsuarios(this.id)"><img style="width: 25px; height: 25px;" src="Styles/Icons/search.png" alt="alt"/>&nbsp;&nbsp;Buscar Usuarios </li>
                     <ul class="ul_regMenu" hidden>
                         <li id="alumno" onclick="cargarForms(this.id)"> Alumno</li>
                         <li id="docente" onclick="cargarForms(this.id)">Docente</li>

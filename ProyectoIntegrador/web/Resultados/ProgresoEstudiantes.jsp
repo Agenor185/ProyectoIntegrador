@@ -74,6 +74,8 @@
             
    
                 </div>
+                
+                <button type="button" class="bttn_nav_right" onclick="volverBusquedaEst()">Volver</button>
    
     </div>
 </div>
