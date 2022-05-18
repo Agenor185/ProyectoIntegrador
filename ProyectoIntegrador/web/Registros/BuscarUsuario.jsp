@@ -10,13 +10,13 @@
           <!--  <div class="btn">
                 <i class="fas fa-search icon"></i>
             </div> -->
-          <select id="usuario" onchange="estudiante(this.value)">
+          <select id="usuario" onchange="tipoUsuarios(this.value)">
               <option disabled selected>Tipo de Usuario</option>
               <option value="1">DOCENTE</option>
               <option value="2">ESTUDIANTE</option>
           </select>
           
-          <select id="grados" onchange="obtenerEstudiantes(this.value)" hidden>
+          <select id="grados" onchange="obtenerUsuarios(this.value)" hidden>
             
             <option disabled selected>Grado</option>
             <option value="1">Noveno</option>
@@ -24,13 +24,13 @@
             <option value="3">Once</option>
         </select>&nbsp;&nbsp;
         
-        <input list="estudiantes" name="myBrowser" />
-        <datalist id="estudiantes" name="nomEstu" style="width: 380px;">
+      
+        <select id="usuarios" name="nomEstu" style="width: 380px;" hidden>
        
-          </datalist>    
+          </select>    
     
      
-        <button type="button" onclick="obtenerInfoEstu($('#estudiantes').val(),$('#grados').val())" style="float: none;" >Buscar &nbsp;<img style="width: 20px; height: 20px;" src="Styles/Icons/search.png" alt="alt"/></button>
+        <button type="button" onclick="obtenerInfoUser($('#usuarios').val(),$('#grados').val(),$('#usuario').val())" style="float: none;" >Buscar &nbsp;<img style="width: 20px; height: 20px;" src="Styles/Icons/search.png" alt="alt"/></button>
 
              </div>
         
@@ -39,9 +39,8 @@
             <table class="table">
                 <thead>
                 <th>Nombre</th>
-                <th>Documento Identidad</th>
-                <th>Grado</th>          
-                <th>Ver Resultados</th>
+                <th>Documento Identidad</th>                  
+                <th>Ver</th>
                 </thead>
                 
                 <tbody id="rows_est">

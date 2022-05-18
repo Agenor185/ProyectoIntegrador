@@ -75,6 +75,121 @@ public class ControladorPrincipal extends HttpServlet {
             modulo = request.getParameter("modulo");
         }
         
+          if (modulo.equals("buscarInfoUsuarios")) {
+
+            String PERS_ID = request.getParameter("PERS_ID");
+            String GRADO_CODIGO = request.getParameter("GRADO_CODIGO");
+                PersonaDAO pedao = new PersonaDAO();
+
+            if(request.getParameter("TIPO_USER").equals("2")){
+
+        
+            try {
+
+                ArrayList<PersonaVO> persona = pedao.obetenerInfoEstu(PERS_ID, GRADO_CODIGO);
+
+                for (PersonaVO personaVO : persona) {
+
+                    out.println(" <tr><td data-label='Nombre'>" + personaVO.getPERS_PRINOMBRE() + " "
+                            + personaVO.getPERS_SEGNOMBRE() + " "
+                            + personaVO.getPERS_PRIAPELLIDO() + " "
+                            + personaVO.getPERS_SEGAPELLIDO() + "</td> "
+                            + "   <td data-label='Documento_Identidad'>" + personaVO.getPERS_NUMDOC() + "</td>"
+                        
+                            + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='cargarResultados(this.id)' src='Styles/Icons/see.png'/></td> </tr>");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            } else {
+                
+                  try {
+
+                ArrayList<PersonaVO> persona = pedao.obetenerDocentesPorId(PERS_ID);
+
+                for (PersonaVO personaVO : persona) {
+
+                    out.println(" <tr><td data-label='Nombre'>" + personaVO.getPERS_PRINOMBRE() + " "
+                            + personaVO.getPERS_SEGNOMBRE() + " "
+                            + personaVO.getPERS_PRIAPELLIDO() + " "
+                            + personaVO.getPERS_SEGAPELLIDO() + "</td> "
+                            + "   <td data-label='Documento_Identidad'>" + personaVO.getPERS_NUMDOC() + "</td>"
+                      
+                            + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='cargarResultados(this.id)' src='Styles/Icons/see.png'/></td> </tr>");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            }
+
+        }
+        
+        
+        
+         if (modulo.equals("cargarUsuarios")) {
+             
+               PersonaDAO pedao = new PersonaDAO();
+               System.out.println("TIPO USUARIOS"+request.getParameter("TIPO_USER"));
+             
+             if(request.getParameter("TIPO_USER").equals("2")){
+
+          
+
+            try {
+
+                ArrayList<PersonaVO> estudiantes = pedao.obetenerEstudiantes(request.getParameter("GRAD_CODIGO"));
+                 out.println(" <option selected disabled> Estudiante </option>");
+            
+                for (PersonaVO estudiante : estudiantes) {
+
+                    out.println(" <option value='" + estudiante.getPERS_ID() + "'>"
+                            + estudiante.getPERS_PRINOMBRE() + " "
+                            + estudiante.getPERS_SEGNOMBRE() + " "
+                            + estudiante.getPERS_PRIAPELLIDO() + " "
+                            + estudiante.getPERS_SEGAPELLIDO() + " </option>");
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             }else {
+                 
+                  try {
+ out.println(" <option selected disabled> Docente </option>");
+                ArrayList<PersonaVO> docentes = pedao.obetenerDocentes();
+
+            
+                for (PersonaVO docente : docentes) {
+
+                    out.println(" <option value='" + docente.getPERS_ID() + "' >"
+                            + docente.getPERS_PRINOMBRE() + " "
+                            + docente.getPERS_SEGNOMBRE() + " "
+                            + docente.getPERS_PRIAPELLIDO() + " "
+                            + docente.getPERS_SEGAPELLIDO() + " </option>");
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             
+             
+             
+             
+             
+             }
+
+        }
+        
+        
+        
         if(modulo.equals("obtenerPreguntas")){
              sesion.setAttribute("preguntas",null);
              PreguntaPruebaDAO ppdao = new PreguntaPruebaDAO();
@@ -362,6 +477,7 @@ public class ControladorPrincipal extends HttpServlet {
                 }
 
                 char[] us = request.getParameter("PRI_NOMBRE").toCharArray();
+                System.out.println("NOMBRE"+us[0]);
                 String userName = us[0] + request.getParameter("SEG_NOMBRE") + request.getParameter("PRI_APELLIDO");
 
                 if (personaDao.NuevaPersona(new PersonaVO(primaryKey,

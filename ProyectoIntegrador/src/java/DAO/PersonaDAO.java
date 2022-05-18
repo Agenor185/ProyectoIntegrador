@@ -136,6 +136,77 @@ public class PersonaDAO {
         ResultSet rs = cn.obtenerDatos(sql.toString());
         System.out.println("CONSULTA: " + sql.toString());
        persona = new ArrayList<>();
+    
+        while (rs.next()) {
+
+            PersonaVO pvo = new PersonaVO(
+                    rs.getString("PERS_ID"),
+                    rs.getString("PERS_NUMDOC"),
+                    rs.getString("PERS_TIPODOC"),
+                    rs.getString("PERS_PRINOMBRE"),
+                    rs.getString("PERS_SEGNOMBRE"),
+                    rs.getString("PERS_PRIAPELLIDO"),
+                    rs.getString("PERS_SEGAPELLIDO"),
+                    rs.getString("PERS_USERNAME"),
+                    rs.getString("PERS_PASSWORD"));
+            persona.add(pvo);
+         
+
+        }
+        return persona;
+    }
+    
+    
+       public ArrayList<PersonaVO> obetenerDocentes() throws SQLException {
+    
+        ArrayList<PersonaVO> persona;
+        StringBuilder sql = new StringBuilder();
+
+        ConexionBD cn = new ConexionBD();
+        cn.ConexionBD();
+        
+        sql.append("  SELECT * FROM persona, docente WHERE persona.PERS_ID = docente.PERS_ID ");
+       System.out.println("DOCENTE"+sql.toString());
+      
+
+        ResultSet rs = cn.obtenerDatos(sql.toString());
+        System.out.println("CONSULTA: " + sql.toString());
+       persona = new ArrayList<>();
+        while (rs.next()) {
+
+            PersonaVO pvo = new PersonaVO(
+                    rs.getString("PERS_ID"),
+                    rs.getString("PERS_NUMDOC"),
+                    rs.getString("PERS_TIPODOC"),
+                    rs.getString("PERS_PRINOMBRE"),
+                    rs.getString("PERS_SEGNOMBRE"),
+                    rs.getString("PERS_PRIAPELLIDO"),
+                    rs.getString("PERS_SEGAPELLIDO"),
+                    rs.getString("PERS_USERNAME"),
+                    rs.getString("PERS_PASSWORD"));
+            persona.add(pvo);
+
+        }
+        return persona;
+    }
+       
+          public ArrayList<PersonaVO> obetenerDocentesPorId(String PERS_ID) throws SQLException {
+    
+        ArrayList<PersonaVO> persona;
+        StringBuilder sql = new StringBuilder();
+
+        ConexionBD cn = new ConexionBD();
+        cn.ConexionBD();
+        
+        sql.append(" SELECT * FROM persona, docente WHERE persona.PERS_ID = docente.PERS_ID  AND docente.PERS_ID ='");
+        sql.append(PERS_ID);
+        sql.append("'");
+       System.out.println("DOCENTE"+sql.toString());
+      
+
+        ResultSet rs = cn.obtenerDatos(sql.toString());
+        System.out.println("CONSULTA: " + sql.toString());
+       persona = new ArrayList<>();
         while (rs.next()) {
 
             PersonaVO pvo = new PersonaVO(
