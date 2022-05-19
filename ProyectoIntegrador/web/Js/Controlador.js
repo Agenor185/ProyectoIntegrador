@@ -344,3 +344,22 @@ function obtenerInfoUser(PERS_ID, GRADO_CODIGO,TIPO_USER) {
     });
 }
 
+function abrirModalUsuario(PERS_ID){
+    
+    $(".div_modal").load('Registros/ModificarUsuario.jsp');
+    
+       $.post("ControladorPrincipal", {PERS_ID: PERS_ID, modulo: "obetenerInfoUsuario"}, function (r) {
+       
+      $(".modal_fondo").fadeIn("fast");
+        $(".div_modal").fadeIn("fast");
+    });
+  
+}
+
+/*FUNCIONES MODIFICAR USUARIO*/
+
+function activarForm(){
+    alert("entroo");
+    $("*", "#form_user").prop('disabled',false);
+}
+

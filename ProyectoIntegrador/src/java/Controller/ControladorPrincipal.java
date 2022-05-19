@@ -96,7 +96,7 @@ public class ControladorPrincipal extends HttpServlet {
                             + personaVO.getPERS_SEGAPELLIDO() + "</td> "
                             + "   <td data-label='Documento_Identidad'>" + personaVO.getPERS_NUMDOC() + "</td>"
                         
-                            + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='cargarResultados(this.id)' src='Styles/Icons/see.png'/></td> </tr>");
+                            + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='abrirModalUsuario()' src='Styles/Icons/see.png'/></td> </tr>");
                 }
 
             } catch (SQLException ex) {
@@ -117,7 +117,7 @@ public class ControladorPrincipal extends HttpServlet {
                             + personaVO.getPERS_SEGAPELLIDO() + "</td> "
                             + "   <td data-label='Documento_Identidad'>" + personaVO.getPERS_NUMDOC() + "</td>"
                       
-                            + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='cargarResultados(this.id)' src='Styles/Icons/see.png'/></td> </tr>");
+                            + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='abrirModalUsuario()' src='Styles/Icons/see.png'/></td> </tr>");
                 }
 
             } catch (SQLException ex) {
