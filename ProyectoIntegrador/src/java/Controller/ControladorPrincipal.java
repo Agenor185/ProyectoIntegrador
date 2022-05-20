@@ -36,9 +36,9 @@ public class ControladorPrincipal extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");       
-        request.setCharacterEncoding("UTF-8"); 
-        
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -62,7 +62,7 @@ public class ControladorPrincipal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         request.setCharacterEncoding("UTF-8"); 
+        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         System.out.println("ENTROO AL CONTROLADOR");
 
@@ -74,157 +74,192 @@ public class ControladorPrincipal extends HttpServlet {
         } else {
             modulo = request.getParameter("modulo");
         }
-        
-          if (modulo.equals("buscarInfoUsuarios")) {
+
+        if (modulo.equals("ModificarUsuario")) {
+
+            PersonaDAO personaDao = new PersonaDAO();
+
+            if (personaDao.ActualizarDatos(new PersonaVO(request.getParameter("PERS_ID"),
+                    request.getParameter("NUM_DOC"),
+                    request.getParameter("TIPO_DOC"),
+                    request.getParameter("PRI_NOMBRE").toUpperCase(),
+                    request.getParameter("SEG_NOMBRE").toUpperCase(),
+                    request.getParameter("PRI_APELLIDO").toUpperCase(),
+                    request.getParameter("SEG_APELLIDO").toUpperCase(),
+                    request.getParameter("USERNAME"),
+                    request.getParameter("PASSWORD"),
+                    "n",
+                    request.getParameter("GRAD_CODIGO")
+            ), request.getParameter("TIPO_USER"))) {
+
+            }
+        }
+
+        if (modulo.equals("verInfoUsuario")) {
+            sesion.setAttribute("InfoUsuario", null);
+            String PERS_ID = request.getParameter("PERS_ID");
+
+            PersonaDAO pedao = new PersonaDAO();
+
+            if (sesion.getAttribute("tUser").equals("2")) {
+
+                try {
+                    ArrayList<PersonaVO> estudiante = pedao.infoEstudianteId(PERS_ID);
+                    sesion.setAttribute("InfoUsuario", estudiante);
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+                try {
+                    ArrayList<PersonaVO> docente = pedao.obetenerDocentesPorId(PERS_ID);
+
+                    sesion.setAttribute("InfoUsuario", docente);
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+
+        if (modulo.equals("buscarInfoUsuarios")) {
+
+            sesion.setAttribute("tUser", null);
 
             String PERS_ID = request.getParameter("PERS_ID");
             String GRADO_CODIGO = request.getParameter("GRADO_CODIGO");
-                PersonaDAO pedao = new PersonaDAO();
+            PersonaDAO pedao = new PersonaDAO();
 
-            if(request.getParameter("TIPO_USER").equals("2")){
+            if (request.getParameter("TIPO_USER").equals("2")) {
 
-        
-            try {
+                sesion.setAttribute("tUser", "2");
+                try {
 
-                ArrayList<PersonaVO> persona = pedao.obetenerInfoEstu(PERS_ID, GRADO_CODIGO);
+                    ArrayList<PersonaVO> persona = pedao.obetenerInfoEstu(PERS_ID, GRADO_CODIGO);
 
-                for (PersonaVO personaVO : persona) {
+                    for (PersonaVO personaVO : persona) {
 
-                    out.println(" <tr><td data-label='Nombre'>" + personaVO.getPERS_PRINOMBRE() + " "
-                            + personaVO.getPERS_SEGNOMBRE() + " "
-                            + personaVO.getPERS_PRIAPELLIDO() + " "
-                            + personaVO.getPERS_SEGAPELLIDO() + "</td> "
-                            + "   <td data-label='Documento_Identidad'>" + personaVO.getPERS_NUMDOC() + "</td>"
-                        
-                            + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='abrirModalUsuario()' src='Styles/Icons/see.png'/></td> </tr>");
+                        out.println(" <tr><td data-label='Nombre'>" + personaVO.getPERS_PRINOMBRE() + " "
+                                + personaVO.getPERS_SEGNOMBRE() + " "
+                                + personaVO.getPERS_PRIAPELLIDO() + " "
+                                + personaVO.getPERS_SEGAPELLIDO() + "</td> "
+                                + "   <td data-label='Documento_Identidad'>" + personaVO.getPERS_NUMDOC() + "</td>"
+                                + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='abrirModalUsuario(this.id)' src='Styles/Icons/see.png'/></td> </tr>");
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
             } else {
-                
-                  try {
+                sesion.setAttribute("tUser", "1");
+                try {
 
-                ArrayList<PersonaVO> persona = pedao.obetenerDocentesPorId(PERS_ID);
+                    ArrayList<PersonaVO> persona = pedao.obetenerDocentesPorId(PERS_ID);
 
-                for (PersonaVO personaVO : persona) {
+                    for (PersonaVO personaVO : persona) {
 
-                    out.println(" <tr><td data-label='Nombre'>" + personaVO.getPERS_PRINOMBRE() + " "
-                            + personaVO.getPERS_SEGNOMBRE() + " "
-                            + personaVO.getPERS_PRIAPELLIDO() + " "
-                            + personaVO.getPERS_SEGAPELLIDO() + "</td> "
-                            + "   <td data-label='Documento_Identidad'>" + personaVO.getPERS_NUMDOC() + "</td>"
-                      
-                            + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='abrirModalUsuario()' src='Styles/Icons/see.png'/></td> </tr>");
+                        out.println(" <tr><td data-label='Nombre'>" + personaVO.getPERS_PRINOMBRE() + " "
+                                + personaVO.getPERS_SEGNOMBRE() + " "
+                                + personaVO.getPERS_PRIAPELLIDO() + " "
+                                + personaVO.getPERS_SEGAPELLIDO() + "</td> "
+                                + "   <td data-label='Documento_Identidad'>" + personaVO.getPERS_NUMDOC() + "</td>"
+                                + " <td data-label='Ver Resultados'> <img id='" + personaVO.getPERS_ID() + "' onclick='abrirModalUsuario(this.id)' src='Styles/Icons/see.png'/></td> </tr>");
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            
             }
 
         }
-        
-        
-        
-         if (modulo.equals("cargarUsuarios")) {
-             
-               PersonaDAO pedao = new PersonaDAO();
-               System.out.println("TIPO USUARIOS"+request.getParameter("TIPO_USER"));
-             
-             if(request.getParameter("TIPO_USER").equals("2")){
 
-          
+        if (modulo.equals("cargarUsuarios")) {
+
+            PersonaDAO pedao = new PersonaDAO();
+            System.out.println("TIPO USUARIOS" + request.getParameter("TIPO_USER"));
+
+            if (request.getParameter("TIPO_USER").equals("2")) {
+
+                try {
+
+                    ArrayList<PersonaVO> estudiantes = pedao.obetenerEstudiantes(request.getParameter("GRAD_CODIGO"));
+                    out.println(" <option selected disabled> Estudiante </option>");
+
+                    for (PersonaVO estudiante : estudiantes) {
+
+                        out.println(" <option value='" + estudiante.getPERS_ID() + "'>"
+                                + estudiante.getPERS_PRINOMBRE() + " "
+                                + estudiante.getPERS_SEGNOMBRE() + " "
+                                + estudiante.getPERS_PRIAPELLIDO() + " "
+                                + estudiante.getPERS_SEGAPELLIDO() + " </option>");
+
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+                try {
+                    out.println(" <option selected disabled> Docente </option>");
+                    ArrayList<PersonaVO> docentes = pedao.obetenerDocentes();
+
+                    for (PersonaVO docente : docentes) {
+
+                        out.println(" <option value='" + docente.getPERS_ID() + "' >"
+                                + docente.getPERS_PRINOMBRE() + " "
+                                + docente.getPERS_SEGNOMBRE() + " "
+                                + docente.getPERS_PRIAPELLIDO() + " "
+                                + docente.getPERS_SEGAPELLIDO() + " </option>");
+
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+
+        if (modulo.equals("obtenerPreguntas")) {
+            sesion.setAttribute("preguntas", null);
+            PreguntaPruebaDAO ppdao = new PreguntaPruebaDAO();
 
             try {
 
-                ArrayList<PersonaVO> estudiantes = pedao.obetenerEstudiantes(request.getParameter("GRAD_CODIGO"));
-                 out.println(" <option selected disabled> Estudiante </option>");
-            
-                for (PersonaVO estudiante : estudiantes) {
-
-                    out.println(" <option value='" + estudiante.getPERS_ID() + "'>"
-                            + estudiante.getPERS_PRINOMBRE() + " "
-                            + estudiante.getPERS_SEGNOMBRE() + " "
-                            + estudiante.getPERS_PRIAPELLIDO() + " "
-                            + estudiante.getPERS_SEGAPELLIDO() + " </option>");
-
-                }
+                ArrayList<PreguntaPruebaVO> preguntas = ppdao.obtenerPreguntas(request.getParameter("PRUE_CODIGO"));
+                sesion.setAttribute("preguntas", preguntas);
 
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-             }else {
-                 
-                  try {
- out.println(" <option selected disabled> Docente </option>");
-                ArrayList<PersonaVO> docentes = pedao.obetenerDocentes();
 
-            
-                for (PersonaVO docente : docentes) {
-
-                    out.println(" <option value='" + docente.getPERS_ID() + "' >"
-                            + docente.getPERS_PRINOMBRE() + " "
-                            + docente.getPERS_SEGNOMBRE() + " "
-                            + docente.getPERS_PRIAPELLIDO() + " "
-                            + docente.getPERS_SEGAPELLIDO() + " </option>");
-
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-             
-             
-             
-             
-             
-             }
-
-        }
-        
-        
-        
-        if(modulo.equals("obtenerPreguntas")){
-             sesion.setAttribute("preguntas",null);
-             PreguntaPruebaDAO ppdao = new PreguntaPruebaDAO();
-                 
-             try {
-                 
-                 ArrayList<PreguntaPruebaVO> preguntas = ppdao.obtenerPreguntas(request.getParameter("PRUE_CODIGO"));
-                 sesion.setAttribute("preguntas", preguntas);
-                 
-             } catch (SQLException ex) {
-                 Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-             }
-                  
-        
-            
         }
 
         if (modulo.endsWith("obtenerRespuestasEstu")) {
-                sesion.setAttribute("revisionEstu",null);
-                 
-                PreguntaPruebaDAO ppdao = new PreguntaPruebaDAO();
+            sesion.setAttribute("revisionEstu", null);
 
-             try {
-                 ArrayList<PreguntaPruebaVO> respuetas = ppdao.obtenerPreguntasEstudiante(
-                         request.getParameter("PREP_CODIGO"),
-                         request.getParameter("PERS_ID"),
-                         request.getParameter("PRIN_CODIGO"));
-                 
-                 sesion.setAttribute("revisionEstu",respuetas);
-                 
-                 
-           
-             } catch (SQLException ex) {
-                 Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-             }
+            PreguntaPruebaDAO ppdao = new PreguntaPruebaDAO();
+
+            try {
+                ArrayList<PreguntaPruebaVO> respuetas = ppdao.obtenerPreguntasEstudiante(
+                        request.getParameter("PREP_CODIGO"),
+                        request.getParameter("PERS_ID"),
+                        request.getParameter("PRIN_CODIGO"));
+
+                sesion.setAttribute("revisionEstu", respuetas);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
 
@@ -370,9 +405,9 @@ public class ControladorPrincipal extends HttpServlet {
 
                 }
 
-                if (pidao.ultimoIntento(sesion.getAttribute("sesion").toString(),request.getParameter("pruebaCode")) != null) {
-                    PRIN_INTENTO = (Integer.parseInt(pidao.ultimoIntento(sesion.getAttribute("sesion").toString(),request.getParameter("pruebaCode") )) + 1);
-                    System.out.println("NUMERO DE INTENTO: "+ PRIN_INTENTO);
+                if (pidao.ultimoIntento(sesion.getAttribute("sesion").toString(), request.getParameter("pruebaCode")) != null) {
+                    PRIN_INTENTO = (Integer.parseInt(pidao.ultimoIntento(sesion.getAttribute("sesion").toString(), request.getParameter("pruebaCode"))) + 1);
+                    System.out.println("NUMERO DE INTENTO: " + PRIN_INTENTO);
                 }
 
                 if (pidao.nuevoIntento(new PruebaIntentoVO(
@@ -477,7 +512,7 @@ public class ControladorPrincipal extends HttpServlet {
                 }
 
                 char[] us = request.getParameter("PRI_NOMBRE").toCharArray();
-                System.out.println("NOMBRE"+us[0]);
+                System.out.println("NOMBRE" + us[0]);
                 String userName = us[0] + request.getParameter("SEG_NOMBRE") + request.getParameter("PRI_APELLIDO");
 
                 if (personaDao.NuevaPersona(new PersonaVO(primaryKey,
@@ -503,9 +538,9 @@ public class ControladorPrincipal extends HttpServlet {
                     }
 
                 }
-                
-                out.println("<div>Nombre de Usuario: "+userName.toLowerCase().replace(" ", "")
-                        +"<br></div>Contraseña:  "+password+"<div></div>");
+
+                out.println("<div>Nombre de Usuario: " + userName.toLowerCase().replace(" ", "")
+                        + "<br></div>Contraseña:  " + password + "<div></div>");
 
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);

@@ -12,6 +12,9 @@ public class PersonaVO {
     String PERS_SEGAPELLIDO;
     String PERS_USERNAME;
     String PERS_PASSWORD;
+    
+    String GRAD_NOMBRE;
+    String GRAD_CODIGO;
 
     public PersonaVO(String PERS_ID, String PERS_NUMDOC, String PERS_TIPODOC, String PERS_PRINOMBRE, String PERS_SEGNOMBRE, String PERS_PRIAPELLIDO, String PERS_SEGAPELLIDO, String PERS_USERNAME, String PERS_PASSWORD) {
         this.PERS_ID = PERS_ID;
@@ -24,6 +27,40 @@ public class PersonaVO {
         this.PERS_USERNAME = PERS_USERNAME;
         this.PERS_PASSWORD = PERS_PASSWORD;
     }
+
+    public PersonaVO(String PERS_ID, String PERS_NUMDOC, String PERS_TIPODOC, String PERS_PRINOMBRE, String PERS_SEGNOMBRE, String PERS_PRIAPELLIDO, String PERS_SEGAPELLIDO, String PERS_USERNAME, String PERS_PASSWORD, String GRAD_NOMBRE, String GRAD_CODIGO) {
+        this.PERS_ID = PERS_ID;
+        this.PERS_NUMDOC = PERS_NUMDOC;
+        this.PERS_TIPODOC = PERS_TIPODOC;
+        this.PERS_PRINOMBRE = PERS_PRINOMBRE;
+        this.PERS_SEGNOMBRE = PERS_SEGNOMBRE;
+        this.PERS_PRIAPELLIDO = PERS_PRIAPELLIDO;
+        this.PERS_SEGAPELLIDO = PERS_SEGAPELLIDO;
+        this.PERS_USERNAME = PERS_USERNAME;
+        this.PERS_PASSWORD = PERS_PASSWORD;
+        this.GRAD_NOMBRE = GRAD_NOMBRE;
+        this.GRAD_CODIGO = GRAD_CODIGO;
+    }
+    
+    
+
+    public String getGRAD_NOMBRE() {
+        return GRAD_NOMBRE;
+    }
+
+    public void setGRAD_NOMBRE(String GRAD_NOMBRE) {
+        this.GRAD_NOMBRE = GRAD_NOMBRE;
+    }
+
+    public String getGRAD_CODIGO() {
+        return GRAD_CODIGO;
+    }
+
+    public void setGRAD_CODIGO(String GRAD_CODIGO) {
+        this.GRAD_CODIGO = GRAD_CODIGO;
+    }
+    
+    
 
     public PersonaVO(String PERS_USERNAME, String PERS_PASSWORD) {
         this.PERS_USERNAME = PERS_USERNAME;

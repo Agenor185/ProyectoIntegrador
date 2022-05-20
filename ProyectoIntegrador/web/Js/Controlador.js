@@ -66,17 +66,14 @@ function verResultados(id) {
 
 function nuevaUsuario() {
 
-alert($("#form_persona").serialize());
+    alert($("#form_persona").serialize());
     $.ajax({
         type: 'post',
         url: $("#form_persona").attr('action'),
         data: $("#form_persona").serialize(),
         success: function (data) {
             alertSucsses("¡Registro Exitoso!");
-            $(".modal_fondo").show("fast");
-            $(".div_modal").show("fast");
-            $(".div_modal").html(data);
-            $("#form_persona")[0].reset();
+        
 
         }
     });
@@ -266,7 +263,7 @@ function obtenerEstudiantes(GRAD_CODIGO) {
 }
 
 function obtenerUsuarios(GRAD_CODIGO) {
-  
+
     $.post("ControladorPrincipal", {GRAD_CODIGO: GRAD_CODIGO, TIPO_USER: "2", modulo: "cargarUsuarios"}, function (r) {
         $("#usuarios").show();
         $("#usuarios").html(r);
@@ -274,7 +271,7 @@ function obtenerUsuarios(GRAD_CODIGO) {
 }
 
 
-function obtenerInfoEstu(PERS_ID, GRADO_CODIGO) {  
+function obtenerInfoEstu(PERS_ID, GRADO_CODIGO) {
 
     $.post("ControladorPrincipal", {PERS_ID: PERS_ID, GRADO_CODIGO: GRADO_CODIGO, modulo: "buscarEstudiante"}, function (r) {
         $("#rows_est").html(r);
@@ -310,56 +307,72 @@ function  cargarIntentos(PERS_ID, PRUE_CODIGO) {
     });
 }
 
-function volverBusquedaEst(){
-    
-     $(".div_container").load('Resultados/BuscarEstudiante.jsp');
+function volverBusquedaEst() {
+
+    $(".div_container").load('Resultados/BuscarEstudiante.jsp');
 }
 
 /*FUNCIONES BUSQUEDA USUARIOS */
 
 function tipoUsuarios(est) {
-    
-    if (est === '2') {
-       $("#usuarios").hide();
-        $("#grados").fadeIn("fast");
-       
-    } else if(est === '1'){
-            $("#grados").fadeOut("fast");
-             $("#usuarios").hide();
-          $.post("ControladorPrincipal", {TIPO_USER:est, modulo: "cargarUsuarios"}, function (r) {
-               $("#usuarios").show();
-              $("#usuarios").html(r);
 
-    });
-        
-        
+    if (est === '2') {
+        $("#usuarios").hide();
+        $("#grados").fadeIn("fast");
+
+    } else if (est === '1') {
+        $("#grados").fadeOut("fast");
+        $("#usuarios").hide();
+        $.post("ControladorPrincipal", {TIPO_USER: est, modulo: "cargarUsuarios"}, function (r) {
+            $("#usuarios").show();
+            $("#usuarios").html(r);
+
+        });
+
+
     }
-     
+
 }
 
-function obtenerInfoUser(PERS_ID, GRADO_CODIGO,TIPO_USER) {  
+function obtenerInfoUser(PERS_ID, GRADO_CODIGO, TIPO_USER) {
 
-    $.post("ControladorPrincipal", {TIPO_USER: TIPO_USER,PERS_ID: PERS_ID, GRADO_CODIGO: GRADO_CODIGO, modulo: "buscarInfoUsuarios"}, function (r) {
+    $.post("ControladorPrincipal", {TIPO_USER: TIPO_USER, PERS_ID: PERS_ID, GRADO_CODIGO: GRADO_CODIGO, modulo: "buscarInfoUsuarios"}, function (r) {
         $("#rows_est").html(r);
     });
 }
 
-function abrirModalUsuario(PERS_ID){
-    
-    $(".div_modal").load('Registros/ModificarUsuario.jsp');
-    
-       $.post("ControladorPrincipal", {PERS_ID: PERS_ID, modulo: "obetenerInfoUsuario"}, function (r) {
-       
-      $(".modal_fondo").fadeIn("fast");
+function abrirModalUsuario(PERS_ID) {
+
+
+
+    $.post("ControladorPrincipal", {PERS_ID: PERS_ID, modulo: "verInfoUsuario"}, function (r) {
+        $(".div_modal").load('Registros/ModificarUsuario.jsp');
+        $(".modal_fondo").fadeIn("fast");
         $(".div_modal").fadeIn("fast");
     });
-  
+
 }
 
 /*FUNCIONES MODIFICAR USUARIO*/
 
-function activarForm(){
-    alert("entroo");
-    $("*", "#form_user").prop('disabled',false);
+function activarForm() {
+
+    $("*", "#form_user").prop('disabled', false);
+}
+function modificarUsuario() {
+   
+    $.ajax({
+        type: 'post',
+        url: $("#form_user").attr('action'),
+        data: $("#form_user").serialize(),
+        success: function (data) {
+            alertSucsses("¡Información modificada con exito!");
+             $("*", "#form_user").prop('disabled', true);
+             $("#mod_b").prop('disabled', false);
+        
+
+        }
+    });
+
 }
 
